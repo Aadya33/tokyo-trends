@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Men's Sale | Tokyo Trends</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #080808;
+            color: white;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+
+            min-height: 80px;
+
+            background: #080808;
+
+            border-bottom: 1px solid #222;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+        }
+
+
+        .logo {
+
+            font-size: 25px;
+
+            font-weight: 900;
+
+            letter-spacing: 3px;
+
+            white-space: nowrap;
+        }
+
+
+        .logo span {
+            color: #e50914;
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            gap: 30px;
+
+            list-style: none;
+        }
+
+
+        .nav-links a {
+
+            color: #ddd;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            font-size: 13px;
+
+            transition: 0.3s;
+        }
+
+
+        .nav-links a:hover {
+            color: #e50914;
+        }
+
+
+        .nav-buttons {
+
+            display: flex;
+
+            gap: 10px;
+        }
+
+
+        .nav-btn {
+
+            border: 1px solid #333;
+
+            padding: 10px 17px;
+
+            color: white;
+
+            text-transform: uppercase;
+
+            font-size: 12px;
+
+            letter-spacing: 1px;
+
+            transition: 0.3s;
+        }
+
+
+        .nav-btn:hover {
+
+            background: #e50914;
+
+            border-color: #e50914;
+        }
+
+
+        /* =========================
+           SALE BANNER
+        ========================= */
+
+        .sale-banner {
+
+            min-height: 390px;
+
+            background:
+                linear-gradient(
+                    110deg,
+                    #e50914 0%,
+                    #b0000b 48%,
+                    #080808 100%
+                );
+
+            padding: 55px 7%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .sale-content {
+
+            max-width: 700px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .sale-small {
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            letter-spacing: 5px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 18px;
+        }
+
+
+        .sale-banner h1 {
+
+            font-size: clamp(55px, 8vw, 105px);
+
+            line-height: 0.85;
+
+            letter-spacing: -6px;
+
+            text-transform: uppercase;
+
+            font-weight: 900;
+        }
+
+
+        .sale-banner h1 span {
+
+            display: block;
+
+            color: #080808;
+        }
+
+
+        .sale-description {
+
+            max-width: 560px;
+
+            margin-top: 22px;
+
+            color: #f4f4f4;
+
+            font-size: 16px;
+
+            line-height: 1.6;
+        }
+
+
+        .sale-button {
+
+            display: inline-block;
+
+            margin-top: 25px;
+
+            padding: 15px 28px;
+
+            background: #080808;
+
+            color: white;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            transition: 0.3s;
+        }
+
+
+        .sale-button:hover {
+
+            background: white;
+
+            color: #080808;
+        }
+
+
+        /* =========================
+           SALE GRAPHIC
+        ========================= */
+
+        .sale-graphic {
+
+            width: 360px;
+
+            height: 360px;
+
+            position: relative;
+
+            flex-shrink: 0;
+        }
+
+
+        .sale-circle {
+
+            width: 320px;
+
+            height: 320px;
+
+            border-radius: 50%;
+
+            border: 2px solid rgba(255,255,255,0.7);
+
+            position: absolute;
+
+            right: 0;
+
+            top: 20px;
+        }
+
+
+        .sale-square {
+
+            width: 240px;
+
+            height: 240px;
+
+            border: 1px solid #080808;
+
+            position: absolute;
+
+            right: 40px;
+
+            top: 60px;
+
+            transform: rotate(18deg);
+        }
+
+
+        .sale-number {
+
+            position: absolute;
+
+            right: 55px;
+
+            top: 100px;
+
+            font-size: 115px;
+
+            font-weight: 900;
+
+            line-height: 1;
+        }
+
+
+        .sale-percent {
+
+            position: absolute;
+
+            right: 58px;
+
+            bottom: 65px;
+
+            font-size: 23px;
+
+            font-weight: bold;
+
+            letter-spacing: 3px;
+        }
+
+
+        /* =========================
+           SALE INFO
+        ========================= */
+
+        .sale-info {
+
+            background: #111;
+
+            border-top: 1px solid #222;
+
+            border-bottom: 1px solid #222;
+
+            padding: 22px 7%;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 40px;
+
+            text-align: center;
+        }
+
+
+        .sale-info strong {
+
+            color: #e50914;
+
+            font-size: 25px;
+        }
+
+
+        .sale-info span {
+
+            color: #888;
+
+            font-size: 12px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+        }
+
+
+        /* =========================
+           CLOTHES
+        ========================= */
+
+        .clothes {
+
+            padding: 70px 7% 100px;
+        }
+
+
+        .section-label {
+
+            color: #e50914;
+
+            font-size: 12px;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 10px;
+        }
+
+
+        .clothes h2 {
+
+            font-size: 48px;
+
+            line-height: 1;
+
+            text-transform: uppercase;
+
+            letter-spacing: -2px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .section-description {
+
+            color: #777;
+
+            font-size: 14px;
+
+            margin-bottom: 35px;
+        }
+
+
+        /* =========================
+           PRODUCT GRID
+        ========================= */
+
+        .product-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+        }
+
+
+        .product-card {
+
+            background: #111;
+
+            border: 1px solid #222;
+
+            position: relative;
+
+            overflow: hidden;
+
+            transition: 0.3s;
+        }
+
+
+        .product-card:hover {
+
+            transform: translateY(-7px);
+
+            border-color: #e50914;
+        }
+
+
+        /* =========================
+           PRODUCT IMAGE
+        ========================= */
+
+        .product-image {
+
+            height: 340px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1b1b1b,
+                    #080808
+                );
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .product-image img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition: transform 0.45s ease;
+        }
+
+
+        .product-card:hover
+        .product-image img {
+
+            transform: scale(1.04);
+        }
+
+
+        .image-placeholder {
+
+            width: 100%;
+
+            height: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: #555;
+
+            font-size: 12px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+        }
+
+
+        .product-number {
+
+            position: absolute;
+
+            top: 15px;
+
+            left: 15px;
+
+            color: white;
+
+            font-size: 11px;
+
+            z-index: 3;
+
+            text-shadow:
+                0 1px 4px #000;
+        }
+
+
+        .discount-badge {
+
+            position: absolute;
+
+            top: 15px;
+
+            right: 15px;
+
+            background: #e50914;
+
+            color: white;
+
+            padding: 8px 11px;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            z-index: 3;
+        }
+
+
+        /* =========================
+           PRODUCT INFO
+        ========================= */
+
+        .product-info {
+
+            padding: 20px;
+        }
+
+
+        .product-info h3 {
+
+            font-size: 17px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .product-info p {
+
+            color: #777;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+
+            margin-bottom: 15px;
+        }
+
+
+        .prices {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .old-price {
+
+            color: #666;
+
+            font-size: 14px;
+
+            text-decoration: line-through;
+        }
+
+
+        .new-price {
+
+            color: #e50914;
+
+            font-size: 19px;
+
+            font-weight: bold;
+        }
+
+
+        .buy-button {
+
+            display: block;
+
+            margin-top: 17px;
+
+            width: 100%;
+
+            text-align: center;
+
+            background: #e50914;
+
+            color: white;
+
+            padding: 12px;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            transition: 0.3s;
+        }
+
+
+        .buy-button:hover {
+
+            background: white;
+
+            color: black;
+        }
+
+
+        /* =========================
+           EMPTY PRODUCTS
+        ========================= */
+
+        .empty-products {
+
+            grid-column: 1 / -1;
+
+            border: 1px solid #222;
+
+            padding: 60px 25px;
+
+            text-align: center;
+
+            color: #777;
+        }
+
+
+        .empty-products strong {
+
+            display: block;
+
+            color: white;
+
+            font-size: 22px;
+
+            margin-bottom: 10px;
+        }
+
+
+        /* =========================
+           BOTTOM SALE
+        ========================= */
+
+        .bottom-sale {
+
+            margin: 0 7% 90px;
+
+            min-height: 280px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #e50914,
+                    #8b0000
+                );
+
+            padding: 45px;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .bottom-sale::before {
+
+            content: "";
+
+            width: 350px;
+
+            height: 350px;
+
+            border: 1px solid rgba(255,255,255,0.25);
+
+            border-radius: 50%;
+
+            position: absolute;
+
+            right: -80px;
+
+            top: -100px;
+        }
+
+
+        .bottom-sale h2 {
+
+            font-size: 58px;
+
+            line-height: 0.9;
+
+            text-transform: uppercase;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .bottom-sale p {
+
+            max-width: 500px;
+
+            color: #eee;
+
+            margin-top: 18px;
+
+            line-height: 1.6;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        /* =========================
+           INSTAGRAM
+        ========================= */
+
+        .instagram {
+
+            text-align: center;
+
+            padding: 75px 20px;
+
+            background: #0d0d0d;
+
+            border-top: 1px solid #222;
+
+            border-bottom: 1px solid #222;
+        }
+
+
+        .instagram h2 {
+
+            font-size: 40px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 15px;
+        }
+
+
+        .instagram p {
+
+            color: #777;
+        }
+
+
+        .instagram a {
+
+            display: inline-block;
+
+            margin-top: 25px;
+
+            border: 1px solid #e50914;
+
+            color: white;
+
+            padding: 14px 28px;
+
+            font-size: 13px;
+
+            text-transform: uppercase;
+
+            transition: 0.3s;
+        }
+
+
+        .instagram a:hover {
+
+            background: #e50914;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+
+            background: #050505;
+
+            padding: 60px 7% 30px;
+        }
+
+
+        .footer-content {
+
+            display: grid;
+
+            grid-template-columns:
+                2fr 1fr 1fr 1fr;
+
+            gap: 50px;
+
+            margin-bottom: 50px;
+        }
+
+
+        .footer-brand h3 {
+
+            font-size: 25px;
+
+            letter-spacing: 3px;
+        }
+
+
+        .footer-brand span {
+
+            color: #e50914;
+        }
+
+
+        .footer-brand p {
+
+            color: #777;
+
+            margin-top: 15px;
+
+            line-height: 1.6;
+
+            max-width: 350px;
+        }
+
+
+        .footer-column h4 {
+
+            font-size: 13px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .footer-column a {
+
+            display: block;
+
+            color: #777;
+
+            margin-bottom: 12px;
+
+            font-size: 13px;
+
+            transition: 0.3s;
+        }
+
+
+        .footer-column a:hover {
+
+            color: #e50914;
+        }
+
+
+        .copyright {
+
+            border-top: 1px solid #222;
+
+            padding-top: 25px;
+
+            color: #555;
+
+            font-size: 12px;
+
+            display: flex;
+
+            justify-content: space-between;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .nav-links {
+                gap: 15px;
+            }
+
+
+            .sale-graphic {
+                transform: scale(0.8);
+            }
+
+
+            .product-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .footer-content {
+
+                grid-template-columns:
+                    1fr 1fr;
+            }
+        }
+
+
+        @media (max-width: 700px) {
+
+            nav {
+
+                padding: 15px 5%;
+
+                flex-wrap: wrap;
+
+                gap: 12px;
+            }
+
+
+            .logo {
+
+                font-size: 18px;
+            }
+
+
+            .nav-links {
+
+                order: 3;
+
+                width: 100%;
+
+                justify-content:
+                    space-between;
+
+                gap: 8px;
+            }
+
+
+            .nav-links a {
+
+                font-size: 10px;
+            }
+
+
+            .nav-btn {
+
+                padding: 8px 10px;
+
+                font-size: 10px;
+            }
+
+
+            .sale-banner {
+
+                min-height: 500px;
+
+                padding: 55px 5%;
+
+                display: block;
+            }
+
+
+            .sale-banner h1 {
+
+                font-size: 60px;
+
+                letter-spacing: -4px;
+            }
+
+
+            .sale-description {
+
+                font-size: 14px;
+            }
+
+
+            .sale-graphic {
+
+                display: none;
+            }
+
+
+            .sale-info {
+
+                flex-direction: column;
+
+                gap: 8px;
+
+                padding: 25px;
+            }
+
+
+            .clothes {
+
+                padding: 60px 5% 70px;
+            }
+
+
+            .clothes h2 {
+
+                font-size: 38px;
+            }
+
+
+            .product-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .product-image {
+
+                height: 390px;
+            }
+
+
+            .bottom-sale {
+
+                margin: 0 5% 70px;
+
+                padding: 40px 25px;
+            }
+
+
+            .bottom-sale h2 {
+
+                font-size: 45px;
+            }
+
+
+            .instagram {
+
+                padding: 65px 20px;
+            }
+
+
+            .instagram h2 {
+
+                font-size: 30px;
+            }
+
+
+            .footer-content {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .copyright {
+
+                display: block;
+
+                line-height: 2;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <nav>
+
+        <a href="/" class="logo">
+            TOKYO <span>TRENDS</span>
+        </a>
+
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="/">
+                    Home
+                </a>
+            </li>
+
+
+            <li>
+                <a href="/men/">
+                    Men
+                </a>
+            </li>
+
+
+            <li>
+                <a href="/women/">
+                    Women
+                </a>
+            </li>
+
+
+            <li>
+                <a href="/cosmetics/">
+                    Cosmetics
+                </a>
+            </li>
+
+        </ul>
+
+
+        <div class="nav-buttons">
+
+            <a href="/login/" class="nav-btn">
+                Login
+            </a>
+
+
+            <a href="/cart/" class="nav-btn">
+
+                Cart
+                (<span id="cartCount">0</span>)
+
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         SALE HERO
+    ========================= -->
+
+    <section class="sale-banner">
+
+
+        <div class="sale-content">
+
+            <div class="sale-small">
+                Men's Sale / Limited Time
+            </div>
+
+
+            <h1>
+                50–70%
+                <span>OFF</span>
+            </h1>
+
+
+            <p class="sale-description">
+
+                Shop men's streetwear at massive discounts.
+                Save 50% to 70% on selected clothing styles
+                while stocks last.
+
+            </p>
+
+
+            <a
+                href="#clothes"
+                class="sale-button"
+            >
+                SHOP CLOTHES
+            </a>
+
+        </div>
+
+
+        <div class="sale-graphic">
+
+            <div class="sale-circle"></div>
+
+            <div class="sale-square"></div>
+
+            <div class="sale-number">
+                70
+            </div>
+
+            <div class="sale-percent">
+                % OFF
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SALE INFO
+    ========================= -->
+
+    <div class="sale-info">
+
+        <strong>
+            50–70% OFF
+        </strong>
+
+
+        <span>
+            Selected Men's Clothing
+        </span>
+
+
+        <span>
+            Limited Time
+        </span>
+
+
+        <span>
+            While Stocks Last
+        </span>
+
+    </div>
+
+
+    <!-- =========================
+         DATABASE PRODUCTS
+    ========================= -->
+
+    <section
+        class="clothes"
+        id="clothes"
+    >
+
+
+        <div class="section-label">
+            Men's Collection
+        </div>
+
+
+        <h2>
+            Shop Clothes
+        </h2>
+
+
+        <p class="section-description">
+
+            Discover the latest men's streetwear
+            available at Tokyo Trends.
+
+        </p>
+
+
+        <div class="product-grid">
+
+
+            {% for product in products %}
+
+
+                <article class="product-card">
+
+
+                    <!-- PRODUCT IMAGE -->
+
+                    <a
+                        href="{% url 'product_detail' product.id %}"
+                    >
+
+                        <div class="product-image">
+
+
+                            <div class="product-number">
+
+                                {{ forloop.counter|stringformat:"02d" }}
+
+                            </div>
+
+
+                            {% if product.sale_price and product.sale_price < product.price %}
+
+                                <div class="discount-badge">
+
+                                    {{ product.discount_percentage }}% OFF
+
+                                </div>
+
+                            {% endif %}
+
+
+                            {% with first_image=product.images.all|first %}
+
+
+                                {% if first_image %}
+
+                                    <img
+                                        src="{{ first_image.image.url }}"
+                                        alt="{{ product.name }}"
+                                    >
+
+                                {% else %}
+
+                                    <div class="image-placeholder">
+
+                                        No Image
+
+                                    </div>
+
+                                {% endif %}
+
+
+                            {% endwith %}
+
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- PRODUCT INFORMATION -->
+
+                    <div class="product-info">
+
+
+                        <h3>
+
+                            {{ product.name }}
+
+                        </h3>
+
+
+                        <p>
+
+                            {{ product.description|truncatewords:10 }}
+
+                        </p>
+
+
+                        <div class="prices">
+
+
+                            {% if product.sale_price and product.sale_price < product.price %}
+
+
+                                <span class="old-price">
+
+                                    ₹{{ product.price|floatformat:0 }}
+
+                                </span>
+
+
+                                <span class="new-price">
+
+                                    ₹{{ product.sale_price|floatformat:0 }}
+
+                                </span>
+
+
+                            {% else %}
+
+
+                                <span class="new-price">
+
+                                    ₹{{ product.price|floatformat:0 }}
+
+                                </span>
+
+
+                            {% endif %}
+
+
+                        </div>
+
+
+                        <a
+                            href="{% url 'product_detail' product.id %}"
+                            class="buy-button"
+                        >
+
+                            VIEW PRODUCT
+
+                        </a>
+
+
+                    </div>
+
+
+                </article>
+
+
+            {% empty %}
+
+
+                <div class="empty-products">
+
+                    <strong>
+                        No men's products yet.
+                    </strong>
+
+                    Add a men's product from Django Admin
+                    and it will automatically appear here.
+
+                </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         BOTTOM SALE
+    ========================= -->
+
+    <section class="bottom-sale">
+
+
+        <h2>
+
+            UP TO<br>
+
+            70% OFF
+
+        </h2>
+
+
+        <p>
+
+            Don't miss the Men's Sale.
+            Shop your favorite streetwear before
+            the discounted stock runs out.
+
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         INSTAGRAM
+    ========================= -->
+
+    <section class="instagram">
+
+
+        <div class="section-label">
+
+            Follow The Journey
+
+        </div>
+
+
+        <h2>
+
+            Follow Us On Instagram
+
+        </h2>
+
+
+        <p>
+
+            Get the latest drops, looks and updates
+            from Tokyo Trends.
+
+        </p>
+
+
+        <a
+            href="https://instagram.com/YOUR_HANDLE"
+            target="_blank"
+        >
+
+            @YOUR_HANDLE
+
+        </a>
+
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+
+        <div class="footer-content">
+
+
+            <div class="footer-brand">
+
+
+                <h3>
+
+                    TOKYO <span>TRENDS</span>
+
+                </h3>
+
+
+                <p>
+
+                    Modern fashion and beauty inspired
+                    by the energy, attitude and creativity
+                    of Tokyo.
+
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+
+                <h4>
+                    Shop
+                </h4>
+
+
+                <a href="/men/">
+                    Men
+                </a>
+
+
+                <a href="/women/">
+                    Women
+                </a>
+
+
+                <a href="/cosmetics/">
+                    Cosmetics
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+
+                <h4>
+                    Support
+                </h4>
+
+
+                <a href="#">
+                    Contact
+                </a>
+
+
+                <a href="#">
+                    Shipping
+                </a>
+
+
+                <a href="#">
+                    Returns
+                </a>
+
+
+                <a href="#">
+                    FAQs
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+
+                <h4>
+                    Follow Us
+                </h4>
+
+
+                <a
+                    href="https://instagram.com/YOUR_HANDLE"
+                    target="_blank"
+                >
+
+                    Instagram
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="copyright">
+
+
+            <div>
+
+                © 2026 Tokyo Trends.
+                All rights reserved.
+
+            </div>
+
+
+            <div>
+
+                Designed for the streets.
+
+            </div>
+
+
+        </div>
+
+
+    </footer>
+
+
+    <!-- =========================
+         CART COUNT
+    ========================= -->
+
+    <script>
+
+        function getCart() {
+
+            try {
+
+                return JSON.parse(
+                    localStorage.getItem("tokyoTrendsCart")
+                ) || [];
+
+            } catch (error) {
+
+                return [];
+
+            }
+
+        }
+
+
+        function updateCartCount() {
+
+            const cart = getCart();
+
+
+            const count = cart.reduce(
+                function(total, item) {
+
+                    return total +
+                        Number(item.quantity || 0);
+
+                },
+                0
+            );
+
+
+            const cartCount =
+                document.getElementById("cartCount");
+
+
+            if (cartCount) {
+
+                cartCount.textContent = count;
+
+            }
+
+        }
+
+
+        updateCartCount();
+
+    </script>
+
+
+</body>
+
+</html>

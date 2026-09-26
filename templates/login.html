@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Login | Tokyo Trends</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+
+            min-height: 100vh;
+
+            background: #080808;
+
+            color: #ffffff;
+        }
+
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        /* =====================================
+           NAVBAR
+        ===================================== */
+
+        nav {
+            height: 76px;
+
+            background: #050505;
+
+            border-bottom: 1px solid #222;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 7%;
+        }
+
+
+        .logo {
+            font-size: 26px;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+        }
+
+
+        .logo span {
+            color: #e50914;
+        }
+
+
+        .back-home {
+            color: #999;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+
+        .back-home:hover {
+            color: #e50914;
+        }
+
+
+        /* =====================================
+           LOGIN AREA
+        ===================================== */
+
+        .login-page {
+
+            min-height: calc(100vh - 76px);
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 40px 20px;
+
+            background:
+
+                radial-gradient(
+                    circle at center,
+                    rgba(229, 9, 20, 0.10),
+                    transparent 35%
+                ),
+
+                #080808;
+        }
+
+
+        .login-box {
+
+            width: 100%;
+
+            max-width: 430px;
+
+            background: #101010;
+
+            border: 1px solid #292929;
+
+            padding: 45px 40px;
+
+            position: relative;
+
+            box-shadow:
+                0 25px 80px rgba(0, 0, 0, 0.5);
+        }
+
+
+        .login-box::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 3px;
+
+            background: #e50914;
+        }
+
+
+        /* =====================================
+           HEADING
+        ===================================== */
+
+        .login-label {
+
+            color: #e50914;
+
+            font-size: 10px;
+
+            font-weight: 900;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .login-box h1 {
+
+            font-size: 38px;
+
+            font-weight: 1000;
+
+            margin-bottom: 10px;
+        }
+
+
+        .login-description {
+
+            color: #777;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =====================================
+           ERROR MESSAGE
+        ===================================== */
+
+        .error-message {
+
+            background: rgba(229, 9, 20, 0.12);
+
+            border: 1px solid #e50914;
+
+            color: #ff5a61;
+
+            padding: 12px;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* =====================================
+           FORM
+        ===================================== */
+
+        .form-group {
+
+            margin-bottom: 20px;
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            color: #aaa;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 9px;
+        }
+
+
+        .form-group input {
+
+            width: 100%;
+
+            height: 52px;
+
+            background: #080808;
+
+            border: 1px solid #333;
+
+            color: #ffffff;
+
+            padding: 0 15px;
+
+            font-size: 14px;
+
+            outline: none;
+
+            transition: 0.3s;
+        }
+
+
+        .form-group input:focus {
+
+            border-color: #e50914;
+
+            box-shadow:
+                0 0 0 1px #e50914;
+        }
+
+
+        .form-group input::placeholder {
+
+            color: #555;
+        }
+
+
+        /* =====================================
+           CONTINUE BUTTON
+        ===================================== */
+
+        .continue-button {
+
+            width: 100%;
+
+            height: 52px;
+
+            border: none;
+
+            background: #e50914;
+
+            color: #ffffff;
+
+            font-size: 12px;
+
+            font-weight: 900;
+
+            letter-spacing: 1.5px;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        .continue-button:hover {
+
+            background: #ffffff;
+
+            color: #000000;
+        }
+
+
+        /* =====================================
+           INFO
+        ===================================== */
+
+        .login-info {
+
+            margin-top: 25px;
+
+            padding-top: 20px;
+
+            border-top: 1px solid #252525;
+
+            text-align: center;
+
+            color: #666;
+
+            font-size: 11px;
+
+            line-height: 1.7;
+        }
+
+
+        .login-info strong {
+
+            color: #aaa;
+        }
+
+
+        /* =====================================
+           MOBILE
+        ===================================== */
+
+        @media (max-width: 600px) {
+
+            nav {
+
+                padding: 0 20px;
+            }
+
+
+            .logo {
+
+                font-size: 21px;
+            }
+
+
+            .login-box {
+
+                padding: 38px 25px;
+            }
+
+
+            .login-box h1 {
+
+                font-size: 32px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================
+         NAVBAR
+    ===================================== -->
+
+    <nav>
+
+        <a href="/" class="logo">
+            TOKYO <span>TRENDS</span>
+        </a>
+
+
+        <a href="/" class="back-home">
+            ← Back to Home
+        </a>
+
+    </nav>
+
+
+
+    <!-- =====================================
+         LOGIN
+    ===================================== -->
+
+    <main class="login-page">
+
+
+        <div class="login-box">
+
+
+            <div class="login-label">
+                TOKYO TRENDS ACCOUNT
+            </div>
+
+
+            <h1>
+                Welcome.
+            </h1>
+
+
+            <p class="login-description">
+                Enter your mobile number and email
+                to continue shopping with Tokyo Trends.
+            </p>
+
+
+            {% if error %}
+
+                <div class="error-message">
+                    {{ error }}
+                </div>
+
+            {% endif %}
+
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+
+                <!-- MOBILE -->
+
+                <div class="form-group">
+
+                    <label for="mobile">
+                        MOBILE NUMBER
+                    </label>
+
+
+                    <input
+                        type="tel"
+                        id="mobile"
+                        name="mobile"
+                        placeholder="Enter your mobile number"
+                        maxlength="15"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        EMAIL ADDRESS
+                    </label>
+
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email address"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="continue-button"
+                >
+                    CONTINUE
+                </button>
+
+            </form>
+
+
+            <div class="login-info">
+
+                <strong>New to Tokyo Trends?</strong>
+                No problem.
+
+                <br>
+
+                Enter your details and
+                we'll create your customer account automatically.
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+</body>
+</html>

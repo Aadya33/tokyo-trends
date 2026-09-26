@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ product.name }} | Tokyo Trends</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #080808;
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            min-height: 72px;
+            background: #050505;
+            border-bottom: 1px solid #292929;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 6%;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #e50914;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .nav-links a:hover {
+            color: #e50914;
+        }
+
+        .cart-link {
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -13px;
+            right: -15px;
+
+            width: 19px;
+            height: 19px;
+
+            background: #e50914;
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 10px;
+        }
+
+        /* MAIN */
+
+        .container {
+            width: 90%;
+            max-width: 1350px;
+            margin: 45px auto 100px;
+        }
+
+        .breadcrumb {
+            color: #777;
+            font-size: 13px;
+            margin-bottom: 35px;
+        }
+
+        .breadcrumb a:hover {
+            color: #e50914;
+        }
+
+        .product-layout {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 65px;
+        }
+
+        /* IMAGES */
+
+        .gallery {
+            display: grid;
+            grid-template-columns: 90px 1fr;
+            gap: 15px;
+        }
+
+        .thumbnails {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .thumbnail {
+            width: 82px;
+            height: 105px;
+            object-fit: cover;
+
+            border: 1px solid #333;
+
+            cursor: pointer;
+            opacity: 0.6;
+        }
+
+        .thumbnail:hover,
+        .thumbnail.active {
+            opacity: 1;
+            border: 2px solid #e50914;
+        }
+
+        .main-image-box {
+            background: #111;
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            overflow: hidden;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .no-image {
+            height: 100%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #666;
+        }
+
+        /* PRODUCT INFO */
+
+        .category {
+            color: #e50914;
+
+            font-size: 12px;
+            font-weight: 900;
+
+            letter-spacing: 2px;
+            text-transform: uppercase;
+
+            margin-bottom: 15px;
+        }
+
+        .product-name {
+            font-size: clamp(35px, 5vw, 60px);
+            line-height: 0.95;
+
+            text-transform: uppercase;
+
+            font-weight: 900;
+
+            margin-bottom: 25px;
+        }
+
+        .price {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+            margin-bottom: 25px;
+        }
+
+        .old-price {
+            color: #777;
+            font-size: 20px;
+            text-decoration: line-through;
+        }
+
+        .sale-price {
+            font-size: 34px;
+            font-weight: 900;
+        }
+
+        .discount {
+            background: #e50914;
+            padding: 7px 12px;
+
+            font-size: 13px;
+            font-weight: 900;
+        }
+
+        .description {
+            color: #aaa;
+
+            line-height: 1.8;
+
+            font-size: 15px;
+
+            margin-bottom: 30px;
+        }
+
+        /* SIZES */
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 900;
+
+            text-transform: uppercase;
+            letter-spacing: 1px;
+
+            margin-bottom: 15px;
+        }
+
+        .sizes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+
+            margin-bottom: 12px;
+        }
+
+        .size-button {
+            min-width: 58px;
+            height: 46px;
+
+            background: #111;
+            color: white;
+
+            border: 1px solid #444;
+
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .size-button:hover {
+            border-color: #e50914;
+        }
+
+        .size-button.selected {
+            background: #e50914;
+            border-color: #e50914;
+        }
+
+        .size-button.out {
+            color: #555;
+            border-color: #222;
+
+            text-decoration: line-through;
+
+            cursor: not-allowed;
+        }
+
+        .stock {
+            min-height: 22px;
+
+            color: #888;
+
+            font-size: 13px;
+
+            margin-bottom: 25px;
+        }
+
+        /* SIZE GUIDE */
+
+        .size-guide {
+            border-top: 1px solid #292929;
+            border-bottom: 1px solid #292929;
+
+            margin-bottom: 30px;
+        }
+
+        .size-guide summary {
+            padding: 18px 0;
+
+            cursor: pointer;
+
+            font-size: 13px;
+            font-weight: 900;
+
+            text-transform: uppercase;
+        }
+
+        .size-table {
+            width: 100%;
+            border-collapse: collapse;
+
+            margin-bottom: 20px;
+        }
+
+        .size-table th,
+        .size-table td {
+            border: 1px solid #292929;
+
+            padding: 10px;
+
+            text-align: center;
+
+            font-size: 12px;
+        }
+
+        .size-table th {
+            background: #151515;
+        }
+
+        /* CART BUTTON */
+
+        .add-cart {
+            width: 100%;
+            height: 58px;
+
+            background: #e50914;
+            color: white;
+
+            border: none;
+
+            font-size: 15px;
+            font-weight: 900;
+
+            letter-spacing: 1px;
+
+            cursor: pointer;
+        }
+
+        .add-cart:hover {
+            background: #ff1722;
+        }
+
+        /* REVIEWS */
+
+        .reviews {
+            margin-top: 80px;
+
+            border-top: 1px solid #292929;
+
+            padding-top: 40px;
+        }
+
+        .reviews h2 {
+            font-size: 25px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 25px;
+        }
+
+        .review {
+            border-top: 1px solid #292929;
+
+            padding: 20px 0;
+        }
+
+        .review-stars {
+            color: #e50914;
+
+            margin-bottom: 10px;
+        }
+
+        .review-comment {
+            color: #aaa;
+
+            line-height: 1.7;
+        }
+
+        .verified {
+            color: #777;
+
+            font-size: 12px;
+
+            margin-top: 8px;
+        }
+
+        .no-reviews {
+            color: #666;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #030303;
+
+            border-top: 1px solid #222;
+
+            padding: 45px 6%;
+
+            text-align: center;
+
+            color: #666;
+
+            font-size: 13px;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 900px) {
+
+            .product-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                padding: 15px 4%;
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .thumbnails {
+                order: 2;
+
+                flex-direction: row;
+
+                overflow-x: auto;
+            }
+
+            .thumbnail {
+                flex: 0 0 65px;
+
+                width: 65px;
+                height: 82px;
+            }
+
+            .product-name {
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <a href="/" class="logo">
+        TOKYO <span>TRENDS</span>
+    </a>
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="/">Home</a>
+        </li>
+
+        <li>
+            <a href="/men/">Men</a>
+        </li>
+
+        <li>
+            <a href="/women/">Women</a>
+        </li>
+
+        <li>
+            <a href="/cosmetics/">Cosmetics</a>
+        </li>
+
+        <li>
+            <a href="/login/">Login</a>
+        </li>
+
+        <li>
+            <a href="/cart/" class="cart-link">
+                Cart
+
+                <span class="cart-count" id="cartCount">
+                    0
+                </span>
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+<main class="container">
+
+    <!-- BREADCRUMB -->
+
+    <div class="breadcrumb">
+
+        <a href="/">
+            Home
+        </a>
+
+        /
+
+        <a href="/{{ product.category }}/">
+            {{ product.get_category_display }}
+        </a>
+
+        /
+
+        {{ product.name }}
+
+    </div>
+
+
+    <div class="product-layout">
+
+
+        <!-- PRODUCT IMAGES -->
+
+        <div class="gallery">
+
+            <div class="thumbnails">
+
+                {% for image in product.images.all %}
+
+                    <img
+                        src="{{ image.image.url }}"
+                        alt="{{ product.name }}"
+                        class="thumbnail {% if forloop.first %}active{% endif %}"
+                        onclick="changeImage(this)"
+                    >
+
+                {% endfor %}
+
+            </div>
+
+
+            <div class="main-image-box">
+
+                {% with first_image=product.images.all|first %}
+
+                    {% if first_image %}
+
+                        <img
+                            src="{{ first_image.image.url }}"
+                            alt="{{ product.name }}"
+                            class="main-image"
+                            id="mainImage"
+                        >
+
+                    {% else %}
+
+                        <div class="no-image">
+                            No image available
+                        </div>
+
+                    {% endif %}
+
+                {% endwith %}
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCT INFORMATION -->
+
+        <div>
+
+            <div class="category">
+                {{ product.get_category_display }}
+            </div>
+
+
+            <h1 class="product-name">
+                {{ product.name }}
+            </h1>
+
+
+            <!-- PRICE -->
+
+            <div class="price">
+
+                {% if product.sale_price and product.sale_price < product.price %}
+
+                    <span class="old-price">
+                        ₹{{ product.price|floatformat:0 }}
+                    </span>
+
+                    <span class="sale-price">
+                        ₹{{ product.sale_price|floatformat:0 }}
+                    </span>
+
+                    <span class="discount">
+                        {{ product.discount_percentage }}% OFF
+                    </span>
+
+                {% else %}
+
+                    <span class="sale-price">
+                        ₹{{ product.price|floatformat:0 }}
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <p class="description">
+                {{ product.description }}
+            </p>
+
+
+            <!-- SIZE -->
+
+            <div class="section-title">
+                Select Size
+            </div>
+
+
+            <div class="sizes">
+
+                {% for size in product.sizes.all %}
+
+                    {% if size.stock > 0 %}
+
+                        <button
+                            type="button"
+                            class="size-button"
+                            data-size="{{ size.size }}"
+                            data-stock="{{ size.stock }}"
+                            onclick="selectSize(this)"
+                        >
+                            {{ size.size }}
+                        </button>
+
+                    {% else %}
+
+                        <button
+                            type="button"
+                            class="size-button out"
+                            disabled
+                        >
+                            {{ size.size }}
+                        </button>
+
+                    {% endif %}
+
+                {% empty %}
+
+                    <p style="color:#777;">
+                        No sizes available.
+                    </p>
+
+                {% endfor %}
+
+            </div>
+
+
+            <div class="stock" id="stockMessage">
+                Select a size.
+            </div>
+
+
+            <!-- SIZE GUIDE -->
+
+            <details class="size-guide">
+
+                <summary>
+                    Size Guide
+                </summary>
+
+                <table class="size-table">
+
+                    <thead>
+
+                        <tr>
+                            <th>Size</th>
+                            <th>Chest</th>
+                            <th>Length</th>
+                            <th>Shoulder</th>
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <tr>
+                            <td>XS</td>
+                            <td>36"</td>
+                            <td>26"</td>
+                            <td>16"</td>
+                        </tr>
+
+                        <tr>
+                            <td>S</td>
+                            <td>38"</td>
+                            <td>27"</td>
+                            <td>17"</td>
+                        </tr>
+
+                        <tr>
+                            <td>M</td>
+                            <td>40"</td>
+                            <td>28"</td>
+                            <td>18"</td>
+                        </tr>
+
+                        <tr>
+                            <td>L</td>
+                            <td>42"</td>
+                            <td>29"</td>
+                            <td>19"</td>
+                        </tr>
+
+                        <tr>
+                            <td>XL</td>
+                            <td>44"</td>
+                            <td>30"</td>
+                            <td>20"</td>
+                        </tr>
+
+                        <tr>
+                            <td>2XL</td>
+                            <td>46"</td>
+                            <td>31"</td>
+                            <td>21"</td>
+                        </tr>
+
+                        <tr>
+                            <td>3XL</td>
+                            <td>48"</td>
+                            <td>32"</td>
+                            <td>22"</td>
+                        </tr>
+
+                        <tr>
+                            <td>4XL</td>
+                            <td>50"</td>
+                            <td>33"</td>
+                            <td>23"</td>
+                        </tr>
+
+                        <tr>
+                            <td>5XL</td>
+                            <td>52"</td>
+                            <td>34"</td>
+                            <td>24"</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </details>
+
+
+            <!-- ADD TO CART -->
+
+            <button
+                class="add-cart"
+                id="addCartButton"
+                onclick="addToCart()"
+            >
+                SELECT A SIZE
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- REVIEWS -->
+
+    <section class="reviews">
+
+        <h2>
+            Customer Reviews
+        </h2>
+
+
+        {% for review in product.reviews.all %}
+
+            <div class="review">
+
+                <div class="review-stars">
+
+                    {% for i in "12345" %}
+
+                        {% if forloop.counter <= review.rating %}
+                            ★
+                        {% else %}
+                            ☆
+                        {% endif %}
+
+                    {% endfor %}
+
+                </div>
+
+
+                <p class="review-comment">
+                    {{ review.comment }}
+                </p>
+
+
+                {% if review.verified_purchase %}
+
+                    <div class="verified">
+                        ✓ Verified Purchase
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        {% empty %}
+
+            <p class="no-reviews">
+                No customer reviews yet.
+            </p>
+
+        {% endfor %}
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <strong>TOKYO TRENDS</strong>
+
+    <br><br>
+
+    Tokyo-inspired streetwear, fashion and beauty.
+
+    <br><br>
+
+    © 2026 Tokyo Trends. All rights reserved.
+
+</footer>
+
+
+<script>
+
+    let selectedSize = null;
+    let selectedStock = 0;
+
+
+    function changeImage(image) {
+
+        const mainImage =
+            document.getElementById("mainImage");
+
+        if (!mainImage) {
+            return;
+        }
+
+        mainImage.src = image.src;
+
+
+        document
+            .querySelectorAll(".thumbnail")
+            .forEach(function(item) {
+
+                item.classList.remove("active");
+
+            });
+
+
+        image.classList.add("active");
+    }
+
+
+    function selectSize(button) {
+
+        document
+            .querySelectorAll(".size-button")
+            .forEach(function(item) {
+
+                item.classList.remove("selected");
+
+            });
+
+
+        button.classList.add("selected");
+
+
+        selectedSize =
+            button.dataset.size;
+
+        selectedStock =
+            Number(button.dataset.stock);
+
+
+        document.getElementById("stockMessage").textContent =
+            selectedStock +
+            " item(s) available in size " +
+            selectedSize;
+
+
+        document.getElementById("addCartButton").textContent =
+            "ADD TO CART";
+    }
+
+
+    function getCart() {
+
+        try {
+
+            return JSON.parse(
+                localStorage.getItem("tokyoTrendsCart")
+            ) || [];
+
+        } catch (error) {
+
+            return [];
+
+        }
+    }
+
+
+    function saveCart(cart) {
+
+        localStorage.setItem(
+            "tokyoTrendsCart",
+            JSON.stringify(cart)
+        );
+    }
+
+
+    function updateCartCount() {
+
+        const cart = getCart();
+
+
+        const count =
+            cart.reduce(function(total, item) {
+
+                return total +
+                    Number(item.quantity || 0);
+
+            }, 0);
+
+
+        document.getElementById("cartCount").textContent =
+            count;
+    }
+
+
+    function addToCart() {
+
+        if (!selectedSize) {
+
+            alert("Please select a size first.");
+
+            return;
+        }
+
+
+        const cart = getCart();
+
+
+        const productId =
+            "{{ product.id }}";
+
+
+        const productName =
+            "{{ product.name|escapejs }}";
+
+
+        const productPrice =
+            {% if product.sale_price and product.sale_price < product.price %}
+                Number("{{ product.sale_price }}")
+            {% else %}
+                Number("{{ product.price }}")
+            {% endif %};
+
+
+        const existingItem =
+            cart.find(function(item) {
+
+                return String(item.productId) ===
+                    String(productId)
+
+                    &&
+
+                    item.size ===
+                    selectedSize;
+
+            });
+
+
+        if (existingItem) {
+
+            if (
+                existingItem.quantity <
+                selectedStock
+            ) {
+
+                existingItem.quantity += 1;
+
+            } else {
+
+                alert(
+                    "Only " +
+                    selectedStock +
+                    " item(s) available."
+                );
+
+                return;
+            }
+
+        } else {
+
+            cart.push({
+
+                productId: productId,
+
+                name: productName,
+
+                price: productPrice,
+
+                size: selectedSize,
+
+                quantity: 1
+
+            });
+
+        }
+
+
+        saveCart(cart);
+
+        updateCartCount();
+
+
+        alert(
+            productName +
+            " (" +
+            selectedSize +
+            ") added to cart."
+        );
+    }
+
+
+    updateCartCount();
+
+</script>
+
+</body>
+</html>

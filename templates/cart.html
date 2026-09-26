@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tokyo Trends | Cart</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #080808;
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            height: 80px;
+            background: #080808;
+            border-bottom: 1px solid #222;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 3px;
+        }
+
+        .logo span {
+            color: #e50914;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #e50914;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-btn {
+            border: 1px solid #333;
+            padding: 10px 18px;
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: #e50914;
+            border-color: #e50914;
+        }
+
+        /* =========================
+           PAGE HEADER
+        ========================= */
+
+        .page-header {
+            padding: 90px 7% 60px;
+
+            background:
+                radial-gradient(
+                    circle at 80% 30%,
+                    rgba(229, 9, 20, 0.18),
+                    transparent 35%
+                ),
+                #080808;
+
+            border-bottom: 1px solid #222;
+        }
+
+        .page-label {
+            color: #e50914;
+            font-size: 12px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .page-header h1 {
+            font-size: clamp(50px, 8vw, 90px);
+            line-height: 0.9;
+            text-transform: uppercase;
+            letter-spacing: -4px;
+        }
+
+        .page-header h1 span {
+            color: #e50914;
+        }
+
+        .page-header p {
+            margin-top: 25px;
+            color: #777;
+            font-size: 15px;
+        }
+
+        /* =========================
+           CART SECTION
+        ========================= */
+
+        .cart-section {
+            padding: 70px 7% 100px;
+        }
+
+        .cart-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        /* =========================
+           CART ITEMS
+        ========================= */
+
+        .cart-items {
+            border-top: 1px solid #222;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 110px 1fr auto;
+            gap: 25px;
+
+            padding: 25px 0;
+
+            border-bottom: 1px solid #222;
+        }
+
+        .cart-item-image {
+            width: 110px;
+            height: 130px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #181818,
+                    #090909
+                );
+
+            border: 1px solid #222;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cart-item-image::after {
+            content: "";
+
+            width: 70px;
+            height: 70px;
+
+            border-radius: 50%;
+
+            border: 1px solid #e50914;
+
+            opacity: 0.35;
+
+            position: absolute;
+        }
+
+        .cart-item-info h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .cart-item-info p {
+            color: #777;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .cart-price {
+            color: #e50914;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* =========================
+           QUANTITY
+        ========================= */
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 0;
+
+            margin-top: 20px;
+        }
+
+        .quantity-control button {
+            width: 34px;
+            height: 34px;
+
+            border: 1px solid #333;
+            background: #111;
+            color: white;
+
+            font-size: 16px;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .quantity-control button:hover {
+            background: #e50914;
+            border-color: #e50914;
+        }
+
+        .quantity-number {
+            width: 45px;
+            height: 34px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #181818;
+
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+
+            font-size: 13px;
+        }
+
+        /* =========================
+           REMOVE
+        ========================= */
+
+        .remove-button {
+            margin-top: 20px;
+
+            background: transparent;
+            border: none;
+
+            color: #666;
+
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .remove-button:hover {
+            color: #e50914;
+        }
+
+        /* =========================
+           ITEM TOTAL
+        ========================= */
+
+        .item-total {
+            font-size: 17px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        /* =========================
+           ORDER SUMMARY
+        ========================= */
+
+        .summary {
+            background: #111;
+            border: 1px solid #222;
+
+            padding: 30px;
+
+            position: sticky;
+            top: 110px;
+        }
+
+        .summary h2 {
+            font-size: 22px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+
+            margin-bottom: 25px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+
+            padding: 15px 0;
+
+            border-bottom: 1px solid #222;
+
+            color: #999;
+            font-size: 14px;
+        }
+
+        .summary-row span:last-child {
+            color: white;
+        }
+
+        .summary-row.total {
+            padding-top: 25px;
+
+            border-bottom: none;
+
+            color: white;
+
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .summary-row.total span:last-child {
+            color: #e50914;
+        }
+
+
+        /* =========================
+           COUPON
+        ========================= */
+
+        .coupon-box {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid #222;
+        }
+
+        .coupon-title {
+            display: block;
+            margin-bottom: 10px;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .coupon-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .coupon-input {
+            flex: 1;
+            min-width: 0;
+            padding: 13px 12px;
+            background: #080808;
+            border: 1px solid #333;
+            color: #ffffff;
+            outline: none;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .coupon-input:focus {
+            border-color: #e50914;
+        }
+
+        .coupon-button {
+            padding: 13px 15px;
+            background: #e50914;
+            border: 1px solid #e50914;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .coupon-button:hover {
+            background: #ffffff;
+            color: #080808;
+            border-color: #ffffff;
+        }
+
+        .coupon-message {
+            margin-top: 10px;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .coupon-message.success {
+            color: #35d07f;
+        }
+
+        .coupon-message.error {
+            color: #e50914;
+        }
+
+        .summary-row.discount-row {
+            display: none;
+        }
+
+        .summary-row.discount-row.active {
+            display: flex;
+        }
+
+        @media (max-width: 600px) {
+            .coupon-row {
+                flex-direction: column;
+            }
+
+            .coupon-button {
+                width: 100%;
+            }
+        }
+
+        /* =========================
+           CHECKOUT BUTTON
+        ========================= */
+
+        .checkout-button {
+            width: 100%;
+
+            margin-top: 20px;
+
+            padding: 17px;
+
+            border: 1px solid #e50914;
+
+            background: #e50914;
+
+            color: white;
+
+            font-size: 13px;
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .checkout-button:hover {
+            background: white;
+            color: #080808;
+            border-color: white;
+        }
+
+        .continue-shopping {
+            display: block;
+
+            text-align: center;
+
+            margin-top: 18px;
+
+            color: #777;
+
+            text-decoration: none;
+
+            font-size: 12px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            transition: 0.3s;
+        }
+
+        .continue-shopping:hover {
+            color: white;
+        }
+
+        .clear-cart {
+            display: block;
+
+            width: 100%;
+
+            margin-top: 25px;
+
+            padding: 12px;
+
+            background: transparent;
+
+            border: 1px solid #333;
+
+            color: #777;
+
+            font-size: 11px;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .clear-cart:hover {
+            color: #e50914;
+            border-color: #e50914;
+        }
+
+        /* =========================
+           EMPTY CART
+        ========================= */
+
+        .empty-cart {
+            display: none;
+
+            text-align: center;
+
+            padding: 100px 20px;
+        }
+
+        .empty-cart-icon {
+            width: 80px;
+            height: 80px;
+
+            border: 1px solid #333;
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin: 0 auto 30px;
+
+            color: #e50914;
+
+            font-size: 28px;
+        }
+
+        .empty-cart h2 {
+            font-size: 35px;
+            text-transform: uppercase;
+
+            margin-bottom: 15px;
+        }
+
+        .empty-cart p {
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .shop-button {
+            display: inline-block;
+
+            padding: 15px 30px;
+
+            background: #e50914;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+
+            transition: 0.3s;
+        }
+
+        .shop-button:hover {
+            background: white;
+            color: black;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #050505;
+            border-top: 1px solid #222;
+
+            padding: 50px 7% 30px;
+        }
+
+        .footer-content {
+            display: grid;
+
+            grid-template-columns: 2fr 1fr 1fr;
+
+            gap: 50px;
+
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            font-size: 24px;
+            letter-spacing: 3px;
+        }
+
+        .footer-brand span {
+            color: #e50914;
+        }
+
+        .footer-brand p {
+            color: #666;
+
+            margin-top: 15px;
+
+            line-height: 1.6;
+
+            max-width: 350px;
+        }
+
+        .instagram-link {
+            display: inline-block;
+
+            margin-top: 20px;
+
+            color: #ddd;
+
+            text-decoration: none;
+
+            border: 1px solid #2a2a2a;
+
+            padding: 10px 15px;
+
+            font-size: 13px;
+
+            transition: 0.3s;
+        }
+
+        .instagram-link:hover {
+            border-color: #e50914;
+            color: #e50914;
+        }
+
+        .footer-column h4 {
+            margin-bottom: 20px;
+
+            font-size: 12px;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+        }
+
+        .footer-column a {
+            display: block;
+
+            color: #666;
+
+            text-decoration: none;
+
+            margin-bottom: 12px;
+
+            font-size: 13px;
+
+            transition: 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: #e50914;
+        }
+
+        .copyright {
+            border-top: 1px solid #222;
+
+            padding-top: 20px;
+
+            color: #444;
+
+            font-size: 12px;
+
+            display: flex;
+
+            justify-content: space-between;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .cart-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .summary {
+                position: static;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            nav {
+                padding: 0 5%;
+            }
+
+            .nav-buttons {
+                gap: 6px;
+            }
+
+            .nav-btn {
+                padding: 8px 10px;
+                font-size: 11px;
+            }
+
+            .page-header {
+                padding: 60px 5% 45px;
+            }
+
+            .page-header h1 {
+                font-size: 52px;
+            }
+
+            .cart-section {
+                padding: 50px 5% 70px;
+            }
+
+            .cart-item {
+                grid-template-columns: 80px 1fr;
+                gap: 15px;
+            }
+
+            .cart-item-image {
+                width: 80px;
+                height: 100px;
+            }
+
+            .item-total {
+                grid-column: 2;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .copyright {
+                display: block;
+                line-height: 2;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav>
+
+        <div class="logo">
+            TOKYO <span>TRENDS</span>
+        </div>
+
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="/">Home</a>
+            </li>
+
+            <li>
+                <a href="/men/">Men</a>
+            </li>
+
+            <li>
+                <a href="/women/">Women</a>
+            </li>
+
+            <li>
+                <a href="/cosmetics/">Cosmetics</a>
+            </li>
+
+        </ul>
+
+
+        <div class="nav-buttons">
+
+            <a href="/login/" class="nav-btn">
+                Login
+            </a>
+
+            <a href="/cart/" class="nav-btn">
+                Cart (<span id="cartCount">0</span>)
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <header class="page-header">
+
+        <div class="page-label">
+            Your Selection
+        </div>
+
+        <h1>
+            YOUR<br>
+            <span>CART.</span>
+        </h1>
+
+        <p>
+            Review your Tokyo Trends collection before checkout.
+        </p>
+
+    </header>
+
+
+    <!-- =========================
+         CART
+    ========================== -->
+
+    <main class="cart-section">
+
+
+        <!-- EMPTY CART -->
+
+        <div class="empty-cart" id="emptyCart">
+
+            <div class="empty-cart-icon">
+                🛒
+            </div>
+
+            <h2>
+                Your Cart Is Empty
+            </h2>
+
+            <p>
+                Looks like you haven't added anything yet.
+            </p>
+
+            <a href="/" class="shop-button">
+                Start Shopping
+            </a>
+
+        </div>
+
+
+        <!-- CART CONTENT -->
+
+        <div class="cart-layout" id="cartLayout">
+
+
+            <!-- PRODUCTS -->
+
+            <div>
+
+                <div class="cart-items" id="cartItems">
+                </div>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+
+            <aside class="summary">
+
+                <h2>
+                    Order Summary
+                </h2>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Subtotal
+                    </span>
+
+                    <span id="subtotal">
+                        ₹0
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Shipping
+                    </span>
+
+                    <span id="shipping">
+                        ₹0
+                    </span>
+
+                </div>
+
+
+
+                <div class="summary-row discount-row" id="discountRow">
+
+                    <span>
+                        Coupon Discount
+                    </span>
+
+                    <span id="discount">
+                        -₹0
+                    </span>
+
+                </div>
+
+                <div class="summary-row total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <span id="total">
+                        ₹0
+                    </span>
+
+                </div>
+
+
+
+                <div class="coupon-box">
+
+                    <label
+                        for="couponInput"
+                        class="coupon-title"
+                    >
+                        Have a coupon?
+                    </label>
+
+                    <div class="coupon-row">
+
+                        <input
+                            type="text"
+                            id="couponInput"
+                            class="coupon-input"
+                            placeholder="Enter coupon code"
+                            maxlength="30"
+                            autocomplete="off"
+                        >
+
+                        <button
+                            type="button"
+                            class="coupon-button"
+                            onclick="applyCoupon()"
+                        >
+                            Apply
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="couponMessage"
+                        class="coupon-message"
+                    ></div>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="checkout-button"
+                    onclick="checkout()"
+                >
+                    Proceed To Checkout
+                </button>
+
+
+                <a
+                    href="/"
+                    class="continue-shopping"
+                >
+                    ← Continue Shopping
+                </a>
+
+
+                <button
+                    type="button"
+                    class="clear-cart"
+                    onclick="clearCart()"
+                >
+                    Clear Cart
+                </button>
+
+            </aside>
+
+
+        </div>
+
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="footer-content">
+
+
+            <div class="footer-brand">
+
+                <h3>
+                    TOKYO <span>TRENDS</span>
+                </h3>
+
+                <p>
+                    Modern streetwear inspired by the energy,
+                    attitude and creativity of Tokyo.
+                </p>
+
+                <a
+                    href="https://instagram.com/tokyotrends"
+                    class="instagram-link"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    Instagram @tokyotrends
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Shop
+                </h4>
+
+                <a href="/men/">
+                    Men
+                </a>
+
+                <a href="/women/">
+                    Women
+                </a>
+
+                <a href="/cosmetics/">
+                    Cosmetics
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Support
+                </h4>
+
+                <a href="#">
+                    Shipping
+                </a>
+
+                <a href="#">
+                    Returns
+                </a>
+
+                <a href="#">
+                    FAQs
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="copyright">
+
+            <div>
+                © 2026 Tokyo Trends. All rights reserved.
+            </div>
+
+            <div>
+                Designed for the streets.
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         CART JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        function getCart() {
+
+            try {
+
+                return JSON.parse(
+                    localStorage.getItem("tokyoTrendsCart")
+                ) || [];
+
+            } catch (error) {
+
+                return [];
+
+            }
+
+        }
+
+
+        function saveCart(cart) {
+
+            localStorage.setItem(
+                "tokyoTrendsCart",
+                JSON.stringify(cart)
+            );
+
+        }
+        
+
+
+
+        const COUPON_CODE = "TOKYO100";
+        const COUPON_DISCOUNT = 1000;
+        const COUPON_MINIMUM = 8000;
+
+        let appliedCoupon = "";
+
+
+        function applyCoupon() {
+
+            const input =
+                document.getElementById("couponInput");
+
+            const message =
+                document.getElementById("couponMessage");
+
+            const code =
+                input.value.trim().toUpperCase();
+
+
+            message.className = "coupon-message";
+            message.textContent = "";
+
+
+            if (code !== COUPON_CODE) {
+
+                appliedCoupon = "";
+
+                message.textContent =
+                    "Invalid coupon code.";
+
+                message.classList.add("error");
+
+                renderCart();
+
+                return;
+            }
+
+
+            const cart = getCart();
+
+            let subtotal = 0;
+
+            cart.forEach(function(item) {
+
+                const price =
+                    Number(
+                        String(item.price)
+                            .replace(/[₹,]/g, "")
+                    );
+
+                const quantity =
+                    Number(item.quantity);
+
+                subtotal += price * quantity;
+            });
+
+
+            if (subtotal < COUPON_MINIMUM) {
+
+                appliedCoupon = "";
+
+                message.textContent =
+                    "TOKYO100 is valid only on shopping above ₹8,000.";
+
+                message.classList.add("error");
+
+                renderCart();
+
+                return;
+            }
+
+
+            appliedCoupon = COUPON_CODE;
+
+            message.textContent =
+                "Coupon applied! ₹1,000 discount added.";
+
+            message.classList.add("success");
+
+            renderCart();
+
+        }
+
+
+        document
+            .getElementById("couponInput")
+            .addEventListener("keydown", function(event) {
+
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    applyCoupon();
+                }
+
+            });
+
+
+        function removeCoupon() {
+
+            appliedCoupon = "";
+
+            const input =
+                document.getElementById("couponInput");
+
+            const message =
+                document.getElementById("couponMessage");
+
+
+            if (input) {
+                input.value = "";
+            }
+
+            if (message) {
+                message.className = "coupon-message";
+                message.textContent = "";
+            }
+
+        }
+
+
+        function formatPrice(price) {
+
+            return "₹" + Number(price).toLocaleString("en-IN");
+
+        }
+
+
+        function updateCartCount() {
+
+            const cart = getCart();
+
+            let count = 0;
+
+            cart.forEach(function(item) {
+
+                count += Number(item.quantity);
+
+            });
+
+
+            const cartCount =
+                document.getElementById("cartCount");
+
+
+            if (cartCount) {
+
+                cartCount.textContent = count;
+
+            }
+
+        }
+
+
+        function renderCart() {
+
+            const cart = getCart();
+
+            const cartItems =
+                document.getElementById("cartItems");
+
+            const cartLayout =
+                document.getElementById("cartLayout");
+
+            const emptyCart =
+                document.getElementById("emptyCart");
+
+
+            updateCartCount();
+
+
+            if (cart.length === 0) {
+
+                appliedCoupon = "";
+
+                const couponInput =
+                    document.getElementById("couponInput");
+
+                const couponMessage =
+                    document.getElementById("couponMessage");
+
+                if (couponInput) {
+                    couponInput.value = "";
+                }
+
+                if (couponMessage) {
+                    couponMessage.className = "coupon-message";
+                    couponMessage.textContent = "";
+                }
+
+                cartLayout.style.display = "none";
+
+                emptyCart.style.display = "block";
+
+                return;
+
+            }
+
+
+            cartLayout.style.display = "grid";
+
+            emptyCart.style.display = "none";
+
+
+            cartItems.innerHTML = "";
+
+
+            let subtotal = 0;
+
+
+            cart.forEach(function(item, index) {
+
+
+                const price =
+                    Number(
+                        String(item.price)
+                            .replace(/[₹,]/g, "")
+                    );
+
+
+                const quantity =
+                    Number(item.quantity);
+
+
+                const itemTotal =
+                    price * quantity;
+
+
+                subtotal += itemTotal;
+
+
+                const itemElement =
+                    document.createElement("div");
+
+
+                itemElement.className =
+                    "cart-item";
+
+
+                itemElement.innerHTML = `
+
+                    <div class="cart-item-image">
+                    </div>
+
+
+                    <div class="cart-item-info">
+
+                        <h3>
+                            ${item.name}
+                        </h3>
+
+                        <p>
+                            Tokyo Trends Collection
+                        </p>
+
+                        <div class="cart-price">
+                            ${formatPrice(price)}
+                        </div>
+
+
+                        <div class="quantity-control">
+
+                            <button
+                                type="button"
+                                onclick="changeQuantity(${index}, -1)"
+                            >
+                                −
+                            </button>
+
+                            <div class="quantity-number">
+                                ${quantity}
+                            </div>
+
+                            <button
+                                type="button"
+                                onclick="changeQuantity(${index}, 1)"
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="remove-button"
+                            onclick="removeItem(${index})"
+                        >
+                            Remove
+                        </button>
+
+                    </div>
+
+
+                    <div class="item-total">
+                        ${formatPrice(itemTotal)}
+                    </div>
+
+                `;
+
+
+                cartItems.appendChild(itemElement);
+
+            });
+
+
+            /*
+                Free shipping for orders
+                of ₹2,000 or more.
+            */
+
+            const shipping =
+                subtotal >= 2000 ? 0 : 99;
+
+
+            if (
+                appliedCoupon === COUPON_CODE &&
+                subtotal < COUPON_MINIMUM
+            ) {
+                appliedCoupon = "";
+
+                const couponInput =
+                    document.getElementById("couponInput");
+
+                const couponMessage =
+                    document.getElementById("couponMessage");
+
+                if (couponInput) {
+                    couponInput.value = "";
+                }
+
+                if (couponMessage) {
+                    couponMessage.className = "coupon-message";
+                    couponMessage.textContent =
+                        "TOKYO100 was removed because your subtotal is below ₹8,000.";
+                }
+            }
+
+
+            const discount =
+                appliedCoupon === COUPON_CODE &&
+                subtotal >= COUPON_MINIMUM
+                    ? COUPON_DISCOUNT
+                    : 0;
+
+
+            const total =
+                Math.max(0, subtotal + shipping - discount);
+
+
+            document.getElementById("subtotal")
+                .textContent =
+                formatPrice(subtotal);
+
+
+            document.getElementById("shipping")
+                .textContent =
+                shipping === 0
+                    ? "FREE"
+                    : formatPrice(shipping);
+
+
+            const discountRow =
+                document.getElementById("discountRow");
+
+            const discountElement =
+                document.getElementById("discount");
+
+
+            if (discount > 0) {
+
+                discountRow.classList.add("active");
+
+                discountElement.textContent =
+                    "-" + formatPrice(discount);
+
+            } else {
+
+                discountRow.classList.remove("active");
+
+                discountElement.textContent =
+                    "-₹0";
+
+            }
+
+
+            document.getElementById("total")
+                .textContent =
+                formatPrice(total);
+
+        }
+
+
+        function changeQuantity(index, change) {
+
+            const cart = getCart();
+
+
+            if (!cart[index]) {
+
+                return;
+
+            }
+
+
+            cart[index].quantity =
+                Number(cart[index].quantity) + change;
+
+
+            if (cart[index].quantity <= 0) {
+
+                cart.splice(index, 1);
+
+            }
+
+
+            saveCart(cart);
+
+            renderCart();
+
+        }
+
+
+        function removeItem(index) {
+
+            const cart = getCart();
+
+
+            cart.splice(index, 1);
+
+
+            saveCart(cart);
+
+            renderCart();
+
+        }
+
+
+        function clearCart() {
+
+            const confirmed =
+                confirm(
+                    "Are you sure you want to clear your cart?"
+                );
+
+
+            if (!confirmed) {
+
+                return;
+
+            }
+
+
+            localStorage.removeItem(
+                "tokyoTrendsCart"
+            );
+
+
+            renderCart();
+
+        }
+
+
+        function checkout() {
+
+            const cart = getCart();
+
+
+            if (cart.length === 0) {
+
+                alert(
+                    "Your cart is empty."
+                );
+
+                return;
+
+            }
+
+
+            /*
+                Checkout page will be connected
+                here later.
+            */
+
+            alert(
+                "Checkout is coming next."
+            );
+
+        }
+
+
+        renderCart();
+
+    </script>
+
+
+</body>
+
+</html>

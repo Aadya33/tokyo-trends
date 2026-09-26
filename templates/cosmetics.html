@@ -1,0 +1,2278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cosmetics | Tokyo Trends</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #080808;
+            color: #ffffff;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* =========================================
+           NAVBAR
+        ========================================= */
+
+        nav {
+            height: 76px;
+            background: #050505;
+            border-bottom: 1px solid #222;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #e50914;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: #bdbdbd;
+            font-size: 13px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: #ffffff;
+        }
+
+        /* =========================================
+           MAIN COSMETICS SALE HERO
+        ========================================= */
+
+        .cosmetic-hero {
+            min-height: 570px;
+
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+
+            background:
+                radial-gradient(
+                    circle at 80% 35%,
+                    rgba(229, 9, 20, 0.30),
+                    transparent 28%
+                ),
+                linear-gradient(
+                    125deg,
+                    #e50914 0%,
+                    #a90009 45%,
+                    #170204 100%
+                );
+
+            overflow: hidden;
+        }
+
+        .hero-content {
+            padding: 80px 8%;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-label {
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            margin-bottom: 25px;
+        }
+
+        .hero-title {
+            font-size: clamp(70px, 10vw, 140px);
+            line-height: 0.8;
+            letter-spacing: -7px;
+            font-weight: 1000;
+            margin-bottom: 32px;
+        }
+
+        .hero-title span {
+            display: block;
+            color: #050505;
+        }
+
+        .hero-subtitle {
+            font-size: 22px;
+            font-weight: 900;
+            margin-bottom: 12px;
+        }
+
+        .hero-description {
+            max-width: 560px;
+
+            color: #f2f2f2;
+
+            font-size: 15px;
+            line-height: 1.7;
+
+            margin-bottom: 32px;
+        }
+
+        .hero-button {
+            width: fit-content;
+
+            background: #050505;
+            color: #ffffff;
+
+            padding: 17px 32px;
+
+            font-size: 12px;
+            font-weight: 900;
+
+            letter-spacing: 1.5px;
+
+            transition: 0.3s;
+        }
+
+        .hero-button:hover {
+            background: #ffffff;
+            color: #050505;
+            transform: translateY(-3px);
+        }
+
+        /* =========================================
+           COSMETIC VISUAL
+        ========================================= */
+
+        .hero-visual {
+            min-height: 570px;
+
+            position: relative;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .glow-circle {
+            position: absolute;
+
+            width: 430px;
+            height: 430px;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(255,255,255,0.35);
+        }
+
+        .glow-circle-two {
+            position: absolute;
+
+            width: 310px;
+            height: 310px;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(255,255,255,0.22);
+        }
+
+        /* Cosmetic bottles */
+
+        .cosmetic-bottle {
+            position: absolute;
+
+            bottom: 65px;
+
+            width: 100px;
+            height: 260px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #151515,
+                    #3b3b3b,
+                    #111111
+                );
+
+            border-radius: 8px 8px 18px 18px;
+
+            box-shadow:
+                0 25px 50px rgba(0,0,0,0.55);
+
+            z-index: 4;
+        }
+
+        .cosmetic-bottle::before {
+            content: "";
+
+            position: absolute;
+
+            top: -55px;
+            left: 25px;
+
+            width: 50px;
+            height: 60px;
+
+            background: #111;
+
+            border-radius: 6px 6px 0 0;
+        }
+
+        .cosmetic-bottle::after {
+            content: "TT";
+
+            position: absolute;
+
+            top: 50%;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            color: #e50914;
+
+            font-size: 27px;
+            font-weight: 1000;
+        }
+
+        .bottle-one {
+            left: 35%;
+            transform: rotate(-8deg);
+        }
+
+        .bottle-two {
+            left: 55%;
+            height: 210px;
+            bottom: 65px;
+            transform: rotate(7deg);
+        }
+
+        .sale-circle {
+            position: absolute;
+
+            right: 8%;
+            top: 12%;
+
+            width: 105px;
+            height: 105px;
+
+            background: #ffffff;
+            color: #e50914;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            font-size: 15px;
+            font-weight: 1000;
+
+            line-height: 1.1;
+
+            transform: rotate(10deg);
+
+            z-index: 10;
+        }
+
+        /* =========================================
+           OFFER BAR
+        ========================================= */
+
+        .offer-bar {
+            min-height: 65px;
+
+            background: #050505;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            gap: 50px;
+
+            padding: 15px 20px;
+
+            border-bottom: 1px solid #242424;
+
+            flex-wrap: wrap;
+        }
+
+        .offer-item {
+            color: #888;
+
+            font-size: 11px;
+            font-weight: 800;
+
+            letter-spacing: 2px;
+        }
+
+        .offer-item.highlight {
+            color: #e50914;
+            font-size: 14px;
+        }
+
+        /* =========================================
+           COSMETICS SHOP
+        ========================================= */
+
+        .shop-section {
+            padding: 80px 7%;
+
+            background: #090909;
+        }
+
+        .section-header {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: end;
+
+            margin-bottom: 40px;
+        }
+
+        .section-label {
+            color: #e50914;
+
+            font-size: 10px;
+            font-weight: 900;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 10px;
+        }
+
+        .section-header h2 {
+            font-size: 44px;
+
+            font-weight: 1000;
+
+            letter-spacing: -2px;
+        }
+
+        .section-header p {
+            max-width: 370px;
+
+            color: #777;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+        }
+
+        /* =========================================
+           COSMETIC PRODUCT GRID
+        ========================================= */
+
+        .product-grid {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 20px;
+        }
+
+        .product-card {
+            background: #111;
+
+            border: 1px solid #242424;
+
+            overflow: hidden;
+
+            position: relative;
+
+            transition: 0.35s;
+        }
+
+        .product-card:hover {
+            border-color: #e50914;
+
+            transform: translateY(-7px);
+        }
+
+        /* =========================================
+           PRODUCT VISUAL
+        ========================================= */
+
+        .product-visual {
+            height: 360px;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    #292929,
+                    #101010 65%,
+                    #090909
+                );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .product-visual::before {
+            content: "BEAUTY";
+
+            position: absolute;
+
+            color: rgba(255,255,255,0.035);
+
+            font-size: 45px;
+
+            font-weight: 1000;
+
+            letter-spacing: 6px;
+
+            transform: rotate(-90deg);
+        }
+
+        /* =========================================
+           COSMETIC PRODUCT SHAPES
+        ========================================= */
+
+        .cosmetic-product {
+            width: 115px;
+            height: 205px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #111111,
+                    #3d3d3d,
+                    #121212
+                );
+
+            border-radius: 8px 8px 16px 16px;
+
+            position: relative;
+
+            box-shadow:
+                0 20px 40px rgba(0,0,0,0.55);
+
+            transition: 0.3s;
+        }
+
+        .product-card:hover .cosmetic-product {
+            transform: scale(1.06);
+        }
+
+        .cosmetic-product::before {
+            content: "";
+
+            position: absolute;
+
+            width: 55px;
+            height: 42px;
+
+            top: -40px;
+            left: 30px;
+
+            background: #111;
+
+            border-radius: 5px 5px 0 0;
+        }
+
+        .cosmetic-product::after {
+            content: "TT";
+
+            position: absolute;
+
+            top: 50%;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            color: #e50914;
+
+            font-size: 32px;
+
+            font-weight: 1000;
+        }
+
+        .product-card:nth-child(2) .cosmetic-product {
+            width: 145px;
+            height: 145px;
+
+            border-radius: 50%;
+        }
+
+        .product-card:nth-child(2) .cosmetic-product::before {
+            width: 65px;
+            height: 25px;
+
+            top: -24px;
+            left: 40px;
+
+            border-radius: 4px;
+        }
+
+        .product-card:nth-child(3) .cosmetic-product {
+            width: 90px;
+            height: 225px;
+
+            border-radius: 5px;
+        }
+
+        .product-card:nth-child(4) .cosmetic-product {
+            width: 125px;
+            height: 180px;
+
+            border-radius: 12px;
+        }
+
+        .product-card:nth-child(5) .cosmetic-product {
+            width: 170px;
+            height: 105px;
+
+            border-radius: 50%;
+        }
+
+        .product-card:nth-child(6) .cosmetic-product {
+            width: 90px;
+            height: 215px;
+        }
+
+        .product-card:nth-child(7) .cosmetic-product {
+            width: 135px;
+            height: 160px;
+
+            border-radius: 15px;
+        }
+
+        .product-card:nth-child(8) .cosmetic-product {
+            width: 75px;
+            height: 230px;
+        }
+
+        /* =========================================
+           DISCOUNT BADGE
+        ========================================= */
+
+        .discount-badge {
+            position: absolute;
+
+            top: 15px;
+            left: 15px;
+
+            background: #e50914;
+
+            color: #ffffff;
+
+            padding: 9px 12px;
+
+            font-size: 10px;
+            font-weight: 1000;
+
+            z-index: 5;
+        }
+
+        .limited-badge {
+            position: absolute;
+
+            top: 15px;
+            right: 15px;
+
+            color: #ffffff;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            z-index: 5;
+        }
+
+        /* =========================================
+           PRODUCT INFO
+        ========================================= */
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-category {
+            color: #666;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 8px;
+        }
+
+        .product-name {
+            font-size: 16px;
+
+            font-weight: 900;
+
+            margin-bottom: 13px;
+        }
+
+        .price-row {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 18px;
+        }
+
+        .old-price {
+            color: #666;
+
+            font-size: 12px;
+
+            text-decoration: line-through;
+        }
+
+        .new-price {
+            color: #ffffff;
+
+            font-size: 18px;
+
+            font-weight: 1000;
+        }
+
+        .save-text {
+            color: #e50914;
+
+            font-size: 10px;
+
+            font-weight: 900;
+
+            margin-left: auto;
+        }
+
+        .cart-button {
+            display: block;
+            cursor: pointer;
+
+            width: 100%;
+
+            text-align: center;
+
+            border: 1px solid #333;
+
+            padding: 12px;
+
+            font-size: 10px;
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+
+            transition: 0.3s;
+        }
+
+        .cart-button:hover {
+            background: #e50914;
+
+            border-color: #e50914;
+        }
+
+
+        /* =========================================
+           ADD TO CART MESSAGE
+        ========================================= */
+
+        .cart-message {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            z-index: 9999;
+
+            background: #e50914;
+            color: #ffffff;
+
+            padding: 14px 20px;
+
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+
+            box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+
+            opacity: 0;
+            transform: translateY(15px);
+
+            pointer-events: none;
+
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        .cart-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 600px) {
+            .cart-message {
+                left: 5%;
+                right: 5%;
+                bottom: 20px;
+                text-align: center;
+            }
+        }
+
+        /* =========================================
+           CATEGORY SECTION
+        ========================================= */
+
+        .category-section {
+            padding: 80px 7%;
+
+            background: #111;
+
+            border-top: 1px solid #222;
+
+            border-bottom: 1px solid #222;
+        }
+
+        .category-header {
+            margin-bottom: 35px;
+        }
+
+        .category-header h2 {
+            font-size: 42px;
+
+            font-weight: 1000;
+        }
+
+        .category-grid {
+            display: grid;
+
+            grid-template-columns: repeat(5, 1fr);
+
+            gap: 12px;
+        }
+
+        .category-card {
+            height: 210px;
+
+            background: #080808;
+
+            border: 1px solid #292929;
+
+            display: flex;
+
+            align-items: flex-end;
+
+            padding: 22px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            transition: 0.3s;
+        }
+
+        .category-card:hover {
+            border-color: #e50914;
+
+            transform: translateY(-5px);
+        }
+
+        .category-number {
+            position: absolute;
+
+            top: 18px;
+            left: 20px;
+
+            color: #e50914;
+
+            font-size: 10px;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+        }
+
+        .category-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 145px;
+            height: 145px;
+
+            border: 1px solid #2a2a2a;
+
+            border-radius: 50%;
+
+            top: 25px;
+            right: -25px;
+        }
+
+        .category-card:nth-child(2)::before {
+            border-radius: 12px;
+
+            transform: rotate(35deg);
+        }
+
+        .category-card:nth-child(3)::before {
+            width: 110px;
+            height: 175px;
+        }
+
+        .category-card:nth-child(4)::before {
+            border-radius: 0;
+
+            transform: rotate(45deg);
+        }
+
+        .category-card:nth-child(5)::before {
+            width: 175px;
+            height: 95px;
+        }
+
+        .category-card h3 {
+            position: relative;
+
+            z-index: 2;
+
+            font-size: 17px;
+
+            font-weight: 900;
+        }
+
+        /* =========================================
+           SECOND SALE BANNER
+        ========================================= */
+
+        .second-sale {
+            margin: 80px 7%;
+
+            min-height: 280px;
+
+            background:
+                linear-gradient(
+                    100deg,
+                    #e50914,
+                    #a80008 55%,
+                    #190204
+                );
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 50px 60px;
+
+            overflow: hidden;
+        }
+
+        .second-sale-text small {
+            font-size: 10px;
+
+            letter-spacing: 3px;
+
+            font-weight: 900;
+        }
+
+        .second-sale-text h2 {
+            font-size: 54px;
+
+            line-height: 0.95;
+
+            font-weight: 1000;
+
+            margin: 15px 0;
+        }
+
+        .second-sale-text p {
+            font-size: 13px;
+
+            color: #eee;
+        }
+
+        .second-sale-button {
+            background: #050505;
+
+            padding: 16px 30px;
+
+            font-size: 11px;
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+
+            white-space: nowrap;
+
+            transition: 0.3s;
+        }
+
+        .second-sale-button:hover {
+            background: #ffffff;
+
+            color: #000000;
+        }
+
+        /* =========================================
+           INSTAGRAM
+        ========================================= */
+
+        .instagram {
+            padding: 75px 20px;
+
+            text-align: center;
+
+            border-top: 1px solid #222;
+        }
+
+        .instagram-label {
+            color: #e50914;
+
+            font-size: 10px;
+
+            font-weight: 900;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 12px;
+        }
+
+        .instagram h2 {
+            font-size: 32px;
+
+            margin-bottom: 12px;
+        }
+
+        .instagram p {
+            color: #777;
+
+            font-size: 13px;
+
+            margin-bottom: 20px;
+        }
+
+        .instagram a {
+            font-size: 14px;
+
+            font-weight: 900;
+
+            border-bottom: 1px solid #e50914;
+
+            padding-bottom: 5px;
+        }
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        footer {
+            background: #050505;
+
+            padding: 55px 7% 25px;
+        }
+
+        .footer-main {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 50px;
+
+            padding-bottom: 35px;
+
+            border-bottom: 1px solid #222;
+        }
+
+        .footer-brand h2 {
+            font-size: 25px;
+
+            margin-bottom: 12px;
+        }
+
+        .footer-brand h2 span {
+            color: #e50914;
+        }
+
+        .footer-brand p {
+            color: #666;
+
+            max-width: 300px;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+        .footer-links {
+            display: flex;
+
+            gap: 70px;
+        }
+
+        .footer-column h4 {
+            font-size: 11px;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 18px;
+        }
+
+        .footer-column a {
+            display: block;
+
+            color: #666;
+
+            font-size: 12px;
+
+            margin-bottom: 10px;
+
+            transition: 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: #e50914;
+        }
+
+        .copyright {
+            text-align: center;
+
+            color: #444;
+
+            font-size: 10px;
+
+            padding-top: 25px;
+        }
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 1050px) {
+
+            .cosmetic-hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-visual {
+                min-height: 350px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .category-card {
+                height: 190px;
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            nav {
+                height: auto;
+
+                padding: 20px;
+
+                flex-direction: column;
+
+                gap: 18px;
+            }
+
+            nav ul {
+                gap: 15px;
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+            .hero-content {
+                padding: 65px 7%;
+            }
+
+            .hero-title {
+                font-size: 80px;
+
+                letter-spacing: -5px;
+            }
+
+            .hero-visual {
+                min-height: 350px;
+            }
+
+            .glow-circle {
+                width: 300px;
+                height: 300px;
+            }
+
+            .glow-circle-two {
+                width: 210px;
+                height: 210px;
+            }
+
+            .cosmetic-bottle {
+                width: 75px;
+                height: 200px;
+            }
+
+            .bottle-one {
+                left: 33%;
+            }
+
+            .bottle-two {
+                left: 53%;
+                height: 165px;
+            }
+
+            .sale-circle {
+                width: 75px;
+                height: 75px;
+
+                font-size: 10px;
+            }
+
+            .offer-bar {
+                gap: 20px;
+            }
+
+            .section-header {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 15px;
+            }
+
+            .section-header h2 {
+                font-size: 35px;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .second-sale {
+                margin: 60px 5%;
+
+                padding: 40px 30px;
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 30px;
+            }
+
+            .second-sale-text h2 {
+                font-size: 42px;
+            }
+
+            .footer-main {
+                flex-direction: column;
+            }
+
+            .footer-links {
+                gap: 40px;
+
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            .hero-title {
+                font-size: 65px;
+            }
+
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-card {
+                height: 160px;
+            }
+
+            .product-visual {
+                height: 330px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================================
+         NAVBAR
+    ========================================= -->
+
+    <nav>
+
+        <a href="/" class="logo">
+            TOKYO <span>TRENDS</span>
+        </a>
+
+        <ul>
+
+            <li>
+                <a href="/">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="/men/">
+                    Men
+                </a>
+            </li>
+
+            <li>
+                <a href="/women/">
+                    Women
+                </a>
+            </li>
+
+            <li>
+                <a href="/cosmetics/" class="active">
+                    Cosmetics
+                </a>
+            </li>
+
+            <li>
+                <a href="/login/">
+                    Login
+                </a>
+            </li>
+
+            <li>
+                <a href="/cart/">
+                    Cart
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+    <!-- =========================================
+         COSMETICS SALE HERO
+    ========================================= -->
+
+    <section class="cosmetic-hero">
+
+        <div class="hero-content">
+
+            <div class="hero-label">
+                BEAUTY / LIMITED TIME SALE
+            </div>
+
+            <h1 class="hero-title">
+                50–70%
+                <span>OFF</span>
+            </h1>
+
+            <div class="hero-subtitle">
+                COSMETICS SALE
+            </div>
+
+            <p class="hero-description">
+                Save 50% to 70% on selected cosmetics.
+                Discover beauty essentials, makeup,
+                skincare and everyday products at
+                special sale prices.
+            </p>
+
+            <a href="#shop-cosmetics" class="hero-button">
+                SHOP COSMETICS
+            </a>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+            <div class="glow-circle"></div>
+
+            <div class="glow-circle-two"></div>
+
+            <div class="cosmetic-bottle bottle-one"></div>
+
+            <div class="cosmetic-bottle bottle-two"></div>
+
+            <div class="sale-circle">
+                UP TO
+                <br>
+                70% OFF
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         OFFER BAR
+    ========================================= -->
+
+    <div class="offer-bar">
+
+        <div class="offer-item highlight">
+            50–70% OFF
+        </div>
+
+        <div class="offer-item">
+            COSMETICS
+        </div>
+
+        <div class="offer-item">
+            LIMITED TIME
+        </div>
+
+        <div class="offer-item">
+            WHILE STOCKS LAST
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         SHOP COSMETICS
+    ========================================= -->
+
+    <section class="shop-section" id="shop-cosmetics">
+
+        <div class="section-header">
+
+            <div>
+
+                <div class="section-label">
+                    SHOP THE SALE
+                </div>
+
+                <h2>
+                    Beauty Deals
+                </h2>
+
+            </div>
+
+            <p>
+                Discover selected beauty products
+                at 50%, 60% and 70% off while
+                the sale lasts.
+            </p>
+
+        </div>
+
+
+        <!-- =====================================
+             PRODUCT GRID
+        ===================================== -->
+
+        <div class="product-grid">
+
+
+            <!-- PRODUCT 1 -->
+
+            <div class="product-card">
+
+                <div class="product-visual">
+
+                    <div class="discount-badge">
+                        50% OFF
+                    </div>
+
+                    <div class="limited-badge">
+                        LIMITED
+                    </div>
+
+                    <div class="cosmetic-product"></div>
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-category">
+                        Skincare
+                    </div>
+
+                    <div class="product-name">
+                        Daily Glow Serum
+                    </div>
+
+                    <div class="price-row">
+
+                        <span class="old-price">
+                            ₹1,999
+                        </span>
+
+                        <span class="new-price">
+                            ₹999
+                        </span>
+
+                        <span class="save-text">
+                            SAVE ₹1,000
+                        </span>
+
+                    </div>
+
+                    <a href="#"
+                       class="cart-button"
+                       data-name="Daily Glow Serum"
+                       data-price="₹999">
+                        ADD TO CART
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 2 -->
+
+            <div class="product-card">
+
+                <div class="product-visual">
+
+                    <div class="discount-badge">
+                        60% OFF
+                    </div>
+
+                    <div class="limited-badge">
+                        SALE
+                    </div>
+
+                    <div class="cosmetic-product"></div>
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-category">
+                        Makeup
+                    </div>
+
+                    <div class="product-name">
+                        Velvet Lip Color
+                    </div>
+
+                    <div class="price-row">
+
+                        <span class="old-price">
+                            ₹899
+                        </span>
+
+                        <span class="new-price">
+                            ₹359
+                        </span>
+
+                        <span class="save-text">
+                            SAVE ₹540
+                        </span>
+
+                    </div>
+
+                    <a href="#"
+                       class="cart-button"
+                       data-name="Velvet Lip Color"
+                       data-price="₹359">
+                        ADD TO CART
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 3 -->
+
+            <div class="product-card">
+
+                <div class="product-visual">
+
+                    <div class="discount-badge">
+                        70% OFF
+                    </div>
+
+                    <div class="limited-badge">
+                        HOT DEAL
+                    </div>
+
+                    <div class="cosmetic-product"></div>
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-category">
+                        Skincare
+                    </div>
+
+                    <div class="product-name">
+                        Night Repair Cream
+                    </div>
+
+                    <div class="price-row">
+
+                        <span class="old-price">
+                            ₹2,499
+                        </span>
+
+                        <span class="new-price">
+                            ₹749
+                        </span>
+
+                        <span class="save-text">
+                            SAVE ₹1,750
+                        </span>
+
+                    </div>
+
+                    <a href="#"
+                       class="cart-button"
+                       data-name="Night Repair Cream"
+                       data-price="₹749">
+                        ADD TO CART
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 4 -->
+
+            <div class="product-card">
+
+                <div class="product-visual">
+
+                    <div class="discount-badge">
+                        50% OFF
+                    </div>
+
+                    <div class="limited-badge">
+                        LIMITED
+                    </div>
+
+                    <div class="cosmetic-product"></div>
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-category">
+                        Makeup
+                    </div>
+
+                    <div class="product-name">
+                        Matte Finish Foundation
+                    </div>
+
+                    <div class="price-row">
+
+                        <span class="old-price">
+                            ₹1,599
+                        </span>
+
+                        <span class="new-price">
+                            ₹799
+                        </span>
+
+                        <span class="save-text">
+                            SAVE ₹800
+                        </span>
+
+                    </div>
+
+                    <a href="#"
+                       class="cart-button"
+                       data-name="Matte Finish Foundation"
+                       data-price="₹799">
+                        ADD TO CART
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 5 -->
+
+            <div class="product-card">
+
+                <div class="product-visual">
+
+                    <div class="discount-badge">
+                        60% OFF
+                    </div>
+
+                    <div class="limited-badge">
+                        SALE
+                    </div>
+
+                    <div class="cosmetic-product"></div>
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-category">
+                        Haircare
+                    </div>
+
+                    <div class="product-name">
+                        Smooth Hair Mask
+                    </div>
+
+                    <div class="price-row">
+
+                        <span class="old-price">
+                            ₹1,299
+                        </span>
+
+                        <span class="new-price">
+                            ₹519
+                        </span>
+
+                        <span class="save-text">
+                            SAVE ₹780
+                        </span>
+
+                    </div>
+
+                    <a href="#"
+                       class="cart-button"
+                       data-name="Smooth Hair Mask"
+                       data-price="₹519">
+                        ADD TO CART
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 6 -->
+
+            <div class="product-card">
+
+                <div class="product-visual">
+
+                    <div class="discount-badge">
+                        70% OFF
+                    </div>
+
+                    <div class="limited-badge">
+                        HOT DEAL
+                    </div>
+
+                    <div class="cosmetic-product"></div>
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-category">
+                        Skincare
+                    </div>
+
+                    <div class="product-name">
+                        Hydrating Face Cream
+                    </div>
+
+                    <div class="price-row">
+
+                        <span class="old-price">
+                            ₹1,999
+                        </span>
+
+                        <span class="new-price">
+                            ₹599
+                        </span>
+
+                        <span class="save-text">
+                            SAVE ₹1,400
+                        </span>
+
+                    </div>
+
+                    <a href="#"
+                       class="cart-button"
+                       data-name="Hydrating Face Cream"
+                       data-price="₹599">
+                        ADD TO CART
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 7 -->
+
+            <div class="product-card">
+
+                <div class="product-visual">
+
+                    <div class="discount-badge">
+                        50% OFF
+                    </div>
+
+                    <div class="limited-badge">
+                        LIMITED
+                    </div>
+
+                    <div class="cosmetic-product"></div>
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-category">
+                        Makeup
+                    </div>
+
+                    <div class="product-name">
+                        Soft Glow Highlighter
+                    </div>
+
+                    <div class="price-row">
+
+                        <span class="old-price">
+                            ₹1,199
+                        </span>
+
+                        <span class="new-price">
+                            ₹599
+                        </span>
+
+                        <span class="save-text">
+                            SAVE ₹600
+                        </span>
+
+                    </div>
+
+                    <a href="#"
+                       class="cart-button"
+                       data-name="Soft Glow Highlighter"
+                       data-price="₹599">
+                        ADD TO CART
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 8 -->
+
+            <div class="product-card">
+
+                <div class="product-visual">
+
+                    <div class="discount-badge">
+                        60% OFF
+                    </div>
+
+                    <div class="limited-badge">
+                        SALE
+                    </div>
+
+                    <div class="cosmetic-product"></div>
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-category">
+                        Fragrance
+                    </div>
+
+                    <div class="product-name">
+                        Midnight Eau De Parfum
+                    </div>
+
+                    <div class="price-row">
+
+                        <span class="old-price">
+                            ₹2,499
+                        </span>
+
+                        <span class="new-price">
+                            ₹999
+                        </span>
+
+                        <span class="save-text">
+                            SAVE ₹1,500
+                        </span>
+
+                    </div>
+
+                    <a href="#"
+                       class="cart-button"
+                       data-name="Midnight Eau De Parfum"
+                       data-price="₹999">
+                        ADD TO CART
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         COSMETICS CATEGORIES
+    ========================================= -->
+
+    <section class="category-section">
+
+        <div class="category-header">
+
+            <div class="section-label">
+                SHOP BY CATEGORY
+            </div>
+
+            <h2>
+                Beauty Essentials
+            </h2>
+
+        </div>
+
+
+        <div class="category-grid">
+
+            <a href="#shop-cosmetics" class="category-card">
+
+                <div class="category-number">
+                    01
+                </div>
+
+                <h3>
+                    Skincare
+                </h3>
+
+            </a>
+
+
+            <a href="#shop-cosmetics" class="category-card">
+
+                <div class="category-number">
+                    02
+                </div>
+
+                <h3>
+                    Makeup
+                </h3>
+
+            </a>
+
+
+            <a href="#shop-cosmetics" class="category-card">
+
+                <div class="category-number">
+                    03
+                </div>
+
+                <h3>
+                    Haircare
+                </h3>
+
+            </a>
+
+
+            <a href="#shop-cosmetics" class="category-card">
+
+                <div class="category-number">
+                    04
+                </div>
+
+                <h3>
+                    Fragrance
+                </h3>
+
+            </a>
+
+
+            <a href="#shop-cosmetics" class="category-card">
+
+                <div class="category-number">
+                    05
+                </div>
+
+                <h3>
+                    Beauty Tools
+                </h3>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         SECOND SALE BANNER
+    ========================================= -->
+
+    <section class="second-sale">
+
+        <div class="second-sale-text">
+
+            <small>
+                COSMETICS SALE
+            </small>
+
+            <h2>
+                UP TO 70% OFF
+            </h2>
+
+            <p>
+                Selected beauty products.
+                Limited time. While stocks last.
+            </p>
+
+        </div>
+
+        <a href="#shop-cosmetics" class="second-sale-button">
+            SHOP BEAUTY DEALS
+        </a>
+
+    </section>
+
+
+    <!-- =========================================
+         INSTAGRAM
+    ========================================= -->
+
+    <section class="instagram">
+
+        <div class="instagram-label">
+            FOLLOW THE STYLE
+        </div>
+
+        <h2>
+            Tokyo Trends on Instagram
+        </h2>
+
+        <p>
+            Follow us for new products,
+            beauty inspiration and offers.
+        </p>
+
+        <a
+            href="https://instagram.com/YOUR_HANDLE"
+            target="_blank"
+        >
+            @YOUR_HANDLE
+        </a>
+
+    </section>
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================= -->
+
+    <footer>
+
+        <div class="footer-main">
+
+            <div class="footer-brand">
+
+                <h2>
+                    TOKYO <span>TRENDS</span>
+                </h2>
+
+                <p>
+                    Premium streetwear and beauty inspired
+                    by modern Tokyo style.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <div class="footer-column">
+
+                    <h4>
+                        SHOP
+                    </h4>
+
+                    <a href="/">
+                        Home
+                    </a>
+
+                    <a href="/men/">
+                        Men
+                    </a>
+
+                    <a href="/women/">
+                        Women
+                    </a>
+
+                    <a href="/cosmetics/">
+                        Cosmetics
+                    </a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h4>
+                        ACCOUNT
+                    </h4>
+
+                    <a href="/login/">
+                        Login
+                    </a>
+
+                    <a href="/cart/">
+                        Cart
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+            © 2026 Tokyo Trends. All rights reserved.
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================
+         CART FUNCTIONALITY
+    ========================================== -->
+
+    <div class="cart-message" id="cartMessage">
+        Product added to cart.
+    </div>
+
+
+    <script>
+
+        function getCart() {
+
+            try {
+
+                return JSON.parse(
+                    localStorage.getItem("tokyoTrendsCart")
+                ) || [];
+
+            } catch (error) {
+
+                console.error("Could not read cart:", error);
+
+                return [];
+
+            }
+
+        }
+
+
+        function saveCart(cart) {
+
+            localStorage.setItem(
+                "tokyoTrendsCart",
+                JSON.stringify(cart)
+            );
+
+        }
+
+
+        function getCartQuantity() {
+
+            var cart = getCart();
+
+            return cart.reduce(function(total, item) {
+
+                return total + Number(item.quantity || 0);
+
+            }, 0);
+
+        }
+
+
+        function updateCartLinks() {
+
+            var count = getCartQuantity();
+
+            var cartLinks =
+                document.querySelectorAll('a[href="/cart/"]');
+
+            cartLinks.forEach(function(link) {
+
+                if (!link.dataset.cartLabel) {
+
+                    link.dataset.cartLabel =
+                        link.textContent.trim();
+
+                }
+
+                link.textContent =
+                    link.dataset.cartLabel +
+                    " (" + count + ")";
+
+            });
+
+        }
+
+
+        function showCartMessage(productName) {
+
+            var message =
+                document.getElementById("cartMessage");
+
+            if (!message) {
+
+                return;
+
+            }
+
+            message.textContent =
+                productName + " added to cart.";
+
+            message.classList.add("show");
+
+            setTimeout(function() {
+
+                message.classList.remove("show");
+
+            }, 1800);
+
+        }
+
+
+        document
+            .querySelectorAll(".cart-button[data-name]")
+            .forEach(function(button) {
+
+                button.addEventListener("click", function(event) {
+
+                    event.preventDefault();
+
+                    var name =
+                        button.getAttribute("data-name");
+
+                    var price =
+                        button.getAttribute("data-price");
+
+                    var cart = getCart();
+
+                    var existingProduct =
+                        cart.find(function(item) {
+
+                            return item.name === name;
+
+                        });
+
+
+                    if (existingProduct) {
+
+                        existingProduct.quantity =
+                            Number(existingProduct.quantity || 0) + 1;
+
+                    } else {
+
+                        cart.push({
+
+                            name: name,
+
+                            price: price,
+
+                            quantity: 1
+
+                        });
+
+                    }
+
+
+                    saveCart(cart);
+
+                    updateCartLinks();
+
+                    showCartMessage(name);
+
+
+                    var originalText =
+                        button.textContent.trim();
+
+                    button.textContent =
+                        "ADDED ✓";
+
+
+                    setTimeout(function() {
+
+                        button.textContent =
+                            originalText || "ADD TO CART";
+
+                    }, 1000);
+
+                });
+
+            });
+
+
+        updateCartLinks();
+
+    </script>
+
+
+</body>
+</html>
