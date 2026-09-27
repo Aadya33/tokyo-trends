@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FAQ | Tokyo Trends</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #050505;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .navbar {
+            width: 100%;
+            background: #050505;
+            border-bottom: 1px solid #222222;
+            padding: 20px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #e50914;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #e50914;
+        }
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+            min-height: 360px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 70px 20px;
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(229, 9, 20, 0.18),
+                    transparent 55%
+                ),
+                #080808;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .hero-label {
+            color: #e50914;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: clamp(50px, 9vw, 100px);
+            line-height: 0.9;
+            font-weight: 900;
+            letter-spacing: -4px;
+        }
+
+        .hero h1 span {
+            color: #e50914;
+        }
+
+        .hero p {
+            margin-top: 25px;
+            color: #a9a9a9;
+            font-size: 16px;
+        }
+
+        /* =====================================================
+           QUICK HELP
+        ===================================================== */
+
+        .quick-help {
+            padding: 70px 6%;
+            background: #090909;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title small {
+            display: block;
+            color: #e50914;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+            font-weight: 900;
+        }
+
+        .help-grid {
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .help-card {
+            background: #111111;
+            border: 1px solid #242424;
+            padding: 30px 22px;
+            text-align: center;
+            transition: 0.3s ease;
+        }
+
+        .help-card:hover {
+            transform: translateY(-7px);
+            border-color: #e50914;
+            box-shadow: 0 15px 40px rgba(229, 9, 20, 0.12);
+        }
+
+        .help-number {
+            color: #e50914;
+            font-size: 12px;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+
+        .help-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .help-card p {
+            color: #888888;
+            font-size: 13px;
+        }
+
+        /* =====================================================
+           FAQ
+        ===================================================== */
+
+        .faq-section {
+            padding: 80px 6%;
+            background: #050505;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .faq-item {
+            border-top: 1px solid #292929;
+        }
+
+        .faq-item:last-child {
+            border-bottom: 1px solid #292929;
+        }
+
+        .faq-question {
+            width: 100%;
+            border: none;
+            background: transparent;
+            color: #ffffff;
+            padding: 25px 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-align: left;
+            cursor: pointer;
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .faq-question:hover {
+            color: #e50914;
+        }
+
+        .faq-icon {
+            color: #e50914;
+            font-size: 25px;
+            font-weight: 300;
+            transition: 0.3s ease;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+        }
+
+        .faq-answer p {
+            color: #999999;
+            font-size: 14px;
+            padding: 0 45px 25px 5px;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        /* =====================================================
+           HELP CTA
+        ===================================================== */
+
+        .help-cta {
+            padding: 80px 20px;
+            text-align: center;
+            background:
+                linear-gradient(
+                    135deg,
+                    #100000,
+                    #080808
+                );
+            border-top: 1px solid #222222;
+        }
+
+        .help-cta h2 {
+            font-size: 42px;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+
+        .help-cta p {
+            color: #999999;
+            margin-bottom: 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 28px;
+            background: #e50914;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 900;
+            text-transform: uppercase;
+            transition: 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #ffffff;
+            color: #000000;
+            transform: translateY(-3px);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            border: 1px solid #444444;
+        }
+
+        .cta-button.secondary:hover {
+            border-color: #ffffff;
+            background: #ffffff;
+        }
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+            background: #020202;
+            border-top: 1px solid #222222;
+            padding: 55px 6% 25px;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-brand h2 {
+            font-size: 25px;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+
+        .footer-brand h2 span {
+            color: #e50914;
+        }
+
+        .footer-brand p {
+            max-width: 350px;
+            color: #777777;
+            font-size: 13px;
+        }
+
+        .footer-column h3 {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 18px;
+        }
+
+        .footer-column a {
+            display: block;
+            color: #777777;
+            font-size: 13px;
+            margin-bottom: 10px;
+            transition: 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: #e50914;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 45px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid #1b1b1b;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            color: #555555;
+            font-size: 12px;
+        }
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 850px) {
+
+            .navbar {
+                padding: 18px 5%;
+            }
+
+            .nav-links {
+                gap: 14px;
+            }
+
+            .nav-links a {
+                font-size: 11px;
+            }
+
+            .help-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 18px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                min-height: 300px;
+            }
+
+            .hero h1 {
+                font-size: 55px;
+            }
+
+            .section-title h2 {
+                font-size: 32px;
+            }
+
+            .help-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+    <a href="/" class="logo">
+        TOKYO <span>TRENDS</span>
+    </a>
+
+    <div class="nav-links">
+
+        <a href="/">Home</a>
+
+        <a href="/men/">Men</a>
+
+        <a href="/women/">Women</a>
+
+        <a href="/cosmetics/">Cosmetics</a>
+
+        <a href="/login/">Login</a>
+
+        <a href="/cart/">Cart</a>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-label">
+            Tokyo Trends Support
+        </div>
+
+        <h1>
+            FAQ<span>.</span>
+        </h1>
+
+        <p>
+            Everything you need to know about shopping,
+            payments, shipping, orders and discounts.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     QUICK HELP
+===================================================== -->
+
+<section class="quick-help">
+
+    <div class="section-title">
+
+        <small>
+            Quick Help
+        </small>
+
+        <h2>
+            WHAT DO YOU NEED?
+        </h2>
+
+    </div>
+
+    <div class="help-grid">
+
+        <div class="help-card">
+
+            <div class="help-number">
+                01
+            </div>
+
+            <h3>
+                Orders
+            </h3>
+
+            <p>
+                Learn about placing and tracking your order.
+            </p>
+
+        </div>
+
+
+        <div class="help-card">
+
+            <div class="help-number">
+                02
+            </div>
+
+            <h3>
+                Payments
+            </h3>
+
+            <p>
+                Information about available online payment methods.
+            </p>
+
+        </div>
+
+
+        <div class="help-card">
+
+            <div class="help-number">
+                03
+            </div>
+
+            <h3>
+                Shipping
+            </h3>
+
+            <p>
+                Check shipping charges and delivery information.
+            </p>
+
+        </div>
+
+
+        <div class="help-card">
+
+            <div class="help-number">
+                04
+            </div>
+
+            <h3>
+                Returns
+            </h3>
+
+            <p>
+                Find answers about returns and damaged products.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FAQ QUESTIONS
+===================================================== -->
+
+<section class="faq-section">
+
+    <div class="section-title">
+
+        <small>
+            Need To Know
+        </small>
+
+        <h2>
+            COMMON QUESTIONS
+        </h2>
+
+    </div>
+
+
+    <div class="faq-container">
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span>
+                    How do I place an order?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+                    Browse Men, Women or Cosmetics, select a product,
+                    choose the available size where applicable,
+                    add it to your cart and continue to checkout.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span>
+                    What payment methods are available?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+                    Tokyo Trends currently supports online payments
+                    through UPI, credit/debit card and net banking.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span>
+                    What should I do if my payment fails?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+                    If your payment fails, check your payment details
+                    and try again. If the issue continues, contact
+                    Tokyo Trends support before placing another order.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span>
+                    How much does shipping cost?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+                    Orders below ₹2,000 currently have a ₹99 shipping
+                    fee. Orders of ₹2,000 or more qualify for free
+                    shipping.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span>
+                    How can I track my order?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+                    Use the Track My Order page and enter your Order ID
+                    and mobile number to check your order status.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span>
+                    How do I choose the correct size?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+                    Open the product detail page and check the available
+                    sizes and size chart before adding the product to
+                    your cart.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span>
+                    Are all sizes available for every product?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+                    Size availability depends on the individual product
+                    and current stock. Available sizes are shown on the
+                    product detail page.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span>
+                    How do Tokyo Trends discounts work?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+                    Discounted products show their original price,
+                    sale price and applicable discount on the shopping
+                    pages and product details.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span>
+                    How does the TOKYO100 coupon work?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+                    The TOKYO100 coupon currently provides ₹1,000 off
+                    when the order subtotal is at least ₹8,000.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span>
+                    Do I need an account to shop?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+                    Tokyo Trends uses a simple mobile and email based
+                    customer account system. You can log in using your
+                    registered mobile number and email address.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span>
+                    What if I receive a damaged product?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+                    Please keep the product and packaging and contact
+                    Tokyo Trends support as soon as possible with the
+                    relevant order information and photographs.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span>
+                    How can I contact Tokyo Trends?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+                    Use the contact information provided by Tokyo Trends
+                    on the website for assistance with your order or
+                    shopping questions.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CTA
+===================================================== -->
+
+<section class="help-cta">
+
+    <h2>
+        STILL NEED HELP?
+    </h2>
+
+    <p>
+        Check your order or continue shopping at Tokyo Trends.
+    </p>
+
+    <div class="cta-buttons">
+
+        <a
+            href="/track-order/"
+            class="cta-button"
+        >
+            Track My Order
+        </a>
+
+        <a
+            href="/"
+            class="cta-button secondary"
+        >
+            Back To Shopping
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="footer-grid">
+
+
+        <div class="footer-brand">
+
+            <h2>
+                TOKYO <span>TRENDS</span>
+            </h2>
+
+            <p>
+                Premium Tokyo-inspired streetwear, fashion and
+                beauty products built for modern everyday style.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Shop
+            </h3>
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/men/">
+                Men
+            </a>
+
+            <a href="/women/">
+                Women
+            </a>
+
+            <a href="/cosmetics/">
+                Cosmetics
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Account
+            </h3>
+
+            <a href="/login/">
+                Login
+            </a>
+
+            <a href="/cart/">
+                Cart
+            </a>
+
+            <a href="/track-order/">
+                Track Order
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Help
+            </h3>
+
+            <a href="/faq/">
+                FAQ
+            </a>
+
+            <a href="/shipping/">
+                Shipping
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 Tokyo Trends. All rights reserved.
+        </span>
+
+        <span>
+            Tokyo Streetwear. Modern Style.
+        </span>
+
+    </div>
+
+</footer>
+
+
+<!-- =====================================================
+     FAQ JAVASCRIPT
+===================================================== -->
+
+<script>
+
+    const faqQuestions =
+        document.querySelectorAll(".faq-question");
+
+
+    faqQuestions.forEach(function(question) {
+
+        question.addEventListener("click", function() {
+
+            const currentItem =
+                this.parentElement;
+
+            const currentAnswer =
+                currentItem.querySelector(".faq-answer");
+
+
+            document
+                .querySelectorAll(".faq-item")
+                .forEach(function(item) {
+
+                    if (item !== currentItem) {
+
+                        item.classList.remove("active");
+
+                        const answer =
+                            item.querySelector(".faq-answer");
+
+                        answer.style.maxHeight = null;
+
+                    }
+
+                });
+
+
+            currentItem.classList.toggle("active");
+
+
+            if (currentItem.classList.contains("active")) {
+
+                currentAnswer.style.maxHeight =
+                    currentAnswer.scrollHeight + "px";
+
+            } else {
+
+                currentAnswer.style.maxHeight = null;
+
+            }
+
+        });
+
+    });
+
+</script>
+
+
+</body>
+</html>

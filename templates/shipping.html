@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shipping & Payment | Tokyo Trends</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #080808;
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            height: 78px;
+            padding: 0 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #080808;
+            border-bottom: 1px solid #222222;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: 900;
+            letter-spacing: 3px;
+        }
+
+        .logo span {
+            color: #e50914;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-link {
+            color: #999999;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: 0.25s;
+        }
+
+        .nav-link:hover {
+            color: #e50914;
+        }
+
+        /* =========================
+           PAGE HEADER
+        ========================= */
+
+        .page-header {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 70px 5% 45px;
+        }
+
+        .eyebrow {
+            color: #e50914;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: clamp(46px, 7vw, 82px);
+            line-height: 0.92;
+            letter-spacing: -4px;
+            text-transform: uppercase;
+        }
+
+        h1 span {
+            color: #e50914;
+        }
+
+        .intro {
+            max-width: 650px;
+            margin-top: 25px;
+            color: #777777;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* =========================
+           MAIN LAYOUT
+        ========================= */
+
+        .checkout-wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 5% 100px;
+            display: grid;
+            grid-template-columns: minmax(0, 1.55fr) minmax(320px, 0.8fr);
+            gap: 55px;
+        }
+
+        .section {
+            margin-bottom: 45px;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+
+        .section-number {
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #e50914;
+            color: #e50914;
+            font-size: 11px;
+            font-weight: 900;
+        }
+
+        .section-heading h2 {
+            font-size: 23px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px 18px;
+        }
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: block;
+            color: #aaaaaa;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 9px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            height: 50px;
+            padding: 0 15px;
+            background: #0d0d0d;
+            border: 1px solid #2b2b2b;
+            color: #ffffff;
+            outline: none;
+            border-radius: 0;
+            transition: 0.25s;
+        }
+
+        input::placeholder {
+            color: #555555;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #e50914;
+        }
+
+        select option {
+            background: #0d0d0d;
+            color: #ffffff;
+        }
+
+        /* =========================
+           PAYMENT
+        ========================= */
+
+        .payment-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .payment-option {
+            position: relative;
+        }
+
+        .payment-option input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .payment-label {
+            min-height: 70px;
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: #0d0d0d;
+            border: 1px solid #2b2b2b;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .payment-label:hover {
+            border-color: #555555;
+        }
+
+        .payment-option input:checked + .payment-label {
+            border-color: #e50914;
+            background: #110607;
+        }
+
+        .payment-radio {
+            width: 18px;
+            height: 18px;
+            border: 1px solid #555555;
+            border-radius: 50%;
+            flex: 0 0 18px;
+        }
+
+        .payment-option input:checked + .payment-label .payment-radio {
+            border: 5px solid #e50914;
+        }
+
+        .payment-text strong {
+            display: block;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .payment-text span {
+            display: block;
+            margin-top: 5px;
+            color: #666666;
+            font-size: 11px;
+        }
+
+        /* =========================
+           ORDER SUMMARY
+        ========================= */
+
+        .summary-card {
+            position: sticky;
+            top: 25px;
+            background: #0d0d0d;
+            border: 1px solid #242424;
+            padding: 28px;
+        }
+
+        .summary-title {
+            font-size: 13px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #242424;
+        }
+
+        #orderItems {
+            padding: 5px 0;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            gap: 18px;
+            padding: 16px 0;
+            border-bottom: 1px solid #1e1e1e;
+        }
+
+        .summary-item-name {
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .summary-item-meta {
+            color: #666666;
+            font-size: 10px;
+            margin-top: 5px;
+        }
+
+        .summary-item-price {
+            white-space: nowrap;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding-top: 13px;
+            color: #888888;
+            font-size: 12px;
+        }
+
+        .summary-row.discount {
+            color: #e50914;
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #333333;
+        }
+
+        .summary-total span:first-child {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .summary-total span:last-child {
+            font-size: 24px;
+            font-weight: 900;
+        }
+
+        .pay-button {
+            width: 100%;
+            margin-top: 25px;
+            min-height: 55px;
+            background: #e50914;
+            color: #ffffff;
+            border: 1px solid #e50914;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .pay-button:hover {
+            background: #ffffff;
+            color: #080808;
+            border-color: #ffffff;
+        }
+
+        .pay-note {
+            margin-top: 15px;
+            color: #555555;
+            text-align: center;
+            font-size: 10px;
+            line-height: 1.6;
+        }
+
+        .empty-message {
+            padding: 25px 0;
+            color: #666666;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            border-top: 1px solid #222222;
+            padding: 35px 6%;
+            background: #050505;
+            color: #555555;
+            font-size: 11px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 850px) {
+            .checkout-wrap {
+                grid-template-columns: 1fr;
+            }
+
+            .summary-card {
+                position: static;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                padding: 0 5%;
+            }
+
+            .nav-right {
+                gap: 14px;
+            }
+
+            .nav-link {
+                font-size: 9px;
+            }
+
+            .page-header {
+                padding-top: 50px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .field.full {
+                grid-column: auto;
+            }
+
+            h1 {
+                letter-spacing: -2px;
+            }
+
+            .checkout-wrap {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+
+            .summary-card {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="/" class="logo">
+            TOKYO <span>TRENDS</span>
+        </a>
+
+        <div class="nav-right">
+            <a href="/track-order/" class="nav-link">
+                Track Order
+            </a>
+
+            <a href="/cart/" class="nav-link">
+                Back To Cart
+            </a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="eyebrow">Tokyo Trends Checkout</div>
+
+        <h1>
+            Shipping<br>
+            <span>&amp; Payment</span>
+        </h1>
+
+        <p class="intro">
+            Enter your delivery details and choose your preferred online payment method.
+        </p>
+    </header>
+
+    <form id="checkoutForm">
+
+        {% csrf_token %}
+
+        <main class="checkout-wrap">
+
+            <div>
+
+                <section class="section">
+
+                    <div class="section-heading">
+                        <div class="section-number">01</div>
+                        <h2>Shipping Information</h2>
+                    </div>
+
+                    <div class="form-grid">
+
+                        <div class="field">
+                            <label for="fullName">Full Name</label>
+                            <input
+                                type="text"
+                                id="fullName"
+                                placeholder="Enter your full name"
+                                required
+                            >
+                        </div>
+
+                        <div class="field">
+                            <label for="mobile">Mobile Number</label>
+                            <input
+                                type="tel"
+                                id="mobile"
+                                placeholder="10 digit mobile number"
+                                maxlength="10"
+                                required
+                            >
+                        </div>
+
+                        <div class="field full">
+                            <label for="email">Email Address</label>
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="you@example.com"
+                                required
+                            >
+                        </div>
+
+                        <div class="field full">
+                            <label for="address">House / Flat / Building</label>
+                            <input
+                                type="text"
+                                id="address"
+                                placeholder="House number, flat, building name"
+                                required
+                            >
+                        </div>
+
+                        <div class="field full">
+                            <label for="area">Street / Area / Landmark</label>
+                            <input
+                                type="text"
+                                id="area"
+                                placeholder="Street, area or landmark"
+                                required
+                            >
+                        </div>
+
+                        <div class="field">
+                            <label for="city">City</label>
+                            <input
+                                type="text"
+                                id="city"
+                                placeholder="Your city"
+                                required
+                            >
+                        </div>
+
+                        <div class="field">
+                            <label for="state">State</label>
+                            <select id="state" required>
+                                <option value="">Select state</option>
+                                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                <option value="Assam">Assam</option>
+                                <option value="Bihar">Bihar</option>
+                                <option value="Chhattisgarh">Chhattisgarh</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Goa">Goa</option>
+                                <option value="Gujarat">Gujarat</option>
+                                <option value="Haryana">Haryana</option>
+                                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                <option value="Jharkhand">Jharkhand</option>
+                                <option value="Karnataka">Karnataka</option>
+                                <option value="Kerala">Kerala</option>
+                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Manipur">Manipur</option>
+                                <option value="Meghalaya">Meghalaya</option>
+                                <option value="Mizoram">Mizoram</option>
+                                <option value="Nagaland">Nagaland</option>
+                                <option value="Odisha">Odisha</option>
+                                <option value="Punjab">Punjab</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="Sikkim">Sikkim</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                <option value="Telangana">Telangana</option>
+                                <option value="Tripura">Tripura</option>
+                                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                <option value="Uttarakhand">Uttarakhand</option>
+                                <option value="West Bengal">West Bengal</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label for="pincode">PIN Code</label>
+                            <input
+                                type="text"
+                                id="pincode"
+                                placeholder="6 digit PIN"
+                                maxlength="6"
+                                required
+                            >
+                        </div>
+
+                        <div class="field">
+                            <label for="country">Country</label>
+                            <select id="country" required>
+                                <option value="India" selected>India</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <section class="section">
+
+                    <div class="section-heading">
+                        <div class="section-number">02</div>
+                        <h2>Online Payment</h2>
+                    </div>
+
+                    <div class="payment-list">
+
+                        <div class="payment-option">
+                            <input
+                                type="radio"
+                                id="upi"
+                                name="payment"
+                                value="upi"
+                            >
+
+                            <label for="upi" class="payment-label">
+                                <span class="payment-radio"></span>
+
+                                <span class="payment-text">
+                                    <strong>UPI</strong>
+                                    <span>Pay using your UPI app.</span>
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="payment-option">
+                            <input
+                                type="radio"
+                                id="card"
+                                name="payment"
+                                value="card"
+                            >
+
+                            <label for="card" class="payment-label">
+                                <span class="payment-radio"></span>
+
+                                <span class="payment-text">
+                                    <strong>Credit / Debit Card</strong>
+                                    <span>Pay securely using your card.</span>
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="payment-option">
+                            <input
+                                type="radio"
+                                id="netbanking"
+                                name="payment"
+                                value="netbanking"
+                            >
+
+                            <label for="netbanking" class="payment-label">
+                                <span class="payment-radio"></span>
+
+                                <span class="payment-text">
+                                    <strong>Net Banking</strong>
+                                    <span>Pay directly from your bank account.</span>
+                                </span>
+                            </label>
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+            <aside class="summary-card">
+
+                <div class="summary-title">
+                    Order Summary
+                </div>
+
+                <div id="orderItems"></div>
+
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="subtotal">₹0</span>
+                </div>
+
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span id="shipping">₹0</span>
+                </div>
+
+                <div class="summary-row discount">
+                    <span>Discount</span>
+                    <span id="discount">-₹0</span>
+                </div>
+
+                <div class="summary-total">
+                    <span>Total</span>
+                    <span id="total">₹0</span>
+                </div>
+
+                <button
+                    type="button"
+                    class="pay-button"
+                    onclick="processPayment()"
+                >
+                    Pay Now
+                </button>
+
+                <div class="pay-note">
+                    Online payment only. Cash on Delivery is not available.
+                </div>
+
+            </aside>
+
+        </main>
+
+    </form>
+
+    <footer>
+        © 2026 Tokyo Trends. All rights reserved.
+    </footer>
+
+    <script>
+        function getCart() {
+            try {
+                return JSON.parse(
+                    localStorage.getItem("tokyoTrendsCart")
+                ) || [];
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function formatPrice(value) {
+            return "₹" + Number(value || 0).toLocaleString("en-IN");
+        }
+
+        function calculateSubtotal(cart) {
+            let subtotal = 0;
+
+            cart.forEach(function(item) {
+                subtotal +=
+                    Number(item.price || 0) *
+                    Number(item.quantity || 1);
+            });
+
+            return subtotal;
+        }
+
+        function renderOrderSummary() {
+            const cart = getCart();
+            const itemsContainer =
+                document.getElementById("orderItems");
+
+            if (!cart.length) {
+                itemsContainer.innerHTML =
+                    '<div class="empty-message">Your cart is empty. Please add products before checkout.</div>';
+
+                document.getElementById("subtotal").textContent = "₹0";
+                document.getElementById("shipping").textContent = "₹0";
+                document.getElementById("discount").textContent = "-₹0";
+                document.getElementById("total").textContent = "₹0";
+
+                return;
+            }
+
+            itemsContainer.innerHTML = "";
+
+            cart.forEach(function(item) {
+                const quantity =
+                    Number(item.quantity || 1);
+
+                const price =
+                    Number(item.price || 0);
+
+                const itemTotal =
+                    price * quantity;
+
+                const div =
+                    document.createElement("div");
+
+                div.className = "summary-item";
+
+                div.innerHTML = `
+                    <div>
+                        <div class="summary-item-name">
+                            ${escapeHtml(item.name || "Product")}
+                        </div>
+
+                        <div class="summary-item-meta">
+                            Qty: ${quantity}
+                            ${item.size ? " · Size: " + escapeHtml(item.size) : ""}
+                        </div>
+                    </div>
+
+                    <div class="summary-item-price">
+                        ${formatPrice(itemTotal)}
+                    </div>
+                `;
+
+                itemsContainer.appendChild(div);
+            });
+
+            const subtotal =
+                calculateSubtotal(cart);
+
+            const shippingFee =
+                subtotal >= 2000 ? 0 : 99;
+
+            const coupon =
+                localStorage.getItem(
+                    "tokyoTrendsCoupon"
+                );
+
+            const discount =
+                coupon === "TOKYO100" &&
+                subtotal >= 8000
+                    ? 1000
+                    : 0;
+
+            const total =
+                Math.max(
+                    0,
+                    subtotal +
+                    shippingFee -
+                    discount
+                );
+
+            document.getElementById(
+                "subtotal"
+            ).textContent =
+                formatPrice(subtotal);
+
+            document.getElementById(
+                "shipping"
+            ).textContent =
+                shippingFee === 0
+                    ? "FREE"
+                    : formatPrice(shippingFee);
+
+            document.getElementById(
+                "discount"
+            ).textContent =
+                "-" + formatPrice(discount);
+
+            document.getElementById(
+                "total"
+            ).textContent =
+                formatPrice(total);
+        }
+
+        function escapeHtml(value) {
+            const div =
+                document.createElement("div");
+
+            div.textContent =
+                String(value);
+
+            return div.innerHTML;
+        }
+
+        function validateShipping() {
+            const fields = [
+                "fullName",
+                "mobile",
+                "email",
+                "address",
+                "area",
+                "city",
+                "state",
+                "pincode",
+                "country"
+            ];
+
+            for (const id of fields) {
+                const element =
+                    document.getElementById(id);
+
+                if (!element.value.trim()) {
+                    alert(
+                        "Please complete all shipping details."
+                    );
+
+                    element.focus();
+
+                    return false;
+                }
+            }
+
+            const mobile =
+                document.getElementById(
+                    "mobile"
+                ).value.trim();
+
+            if (!/^\d{10}$/.test(mobile)) {
+                alert(
+                    "Please enter a valid 10 digit mobile number."
+                );
+
+                document.getElementById(
+                    "mobile"
+                ).focus();
+
+                return false;
+            }
+
+            const pincode =
+                document.getElementById(
+                    "pincode"
+                ).value.trim();
+
+            if (!/^\d{6}$/.test(pincode)) {
+                alert(
+                    "Please enter a valid 6 digit PIN code."
+                );
+
+                document.getElementById(
+                    "pincode"
+                ).focus();
+
+                return false;
+            }
+
+            return true;
+        }
+
+        async function processPayment() {
+            const cart = getCart();
+
+            if (!cart.length) {
+                alert("Your cart is empty.");
+                window.location.href = "/cart/";
+                return;
+            }
+
+            if (!validateShipping()) {
+                return;
+            }
+
+            const selectedPayment =
+                document.querySelector(
+                    'input[name="payment"]:checked'
+                );
+
+            if (!selectedPayment) {
+                alert(
+                    "Please select a payment method."
+                );
+                return;
+            }
+
+            const csrfInput =
+                document.querySelector(
+                    '#checkoutForm input[name="csrfmiddlewaretoken"]'
+                );
+
+            const csrfToken =
+                document.querySelector(
+                    'input[name="csrfmiddlewaretoken"]'
+                );
+
+            const shippingData = {
+                fullName:
+                    document.getElementById(
+                        "fullName"
+                    ).value.trim(),
+
+                mobile:
+                    document.getElementById(
+                        "mobile"
+                    ).value.trim(),
+
+                email:
+                    document.getElementById(
+                        "email"
+                    ).value.trim(),
+
+                address:
+                    document.getElementById(
+                        "address"
+                    ).value.trim(),
+
+                area:
+                    document.getElementById(
+                        "area"
+                    ).value.trim(),
+
+                city:
+                    document.getElementById(
+                        "city"
+                    ).value.trim(),
+
+                state:
+                    document.getElementById(
+                        "state"
+                    ).value,
+
+                pincode:
+                    document.getElementById(
+                        "pincode"
+                    ).value.trim(),
+
+                country:
+                    document.getElementById(
+                        "country"
+                    ).value,
+
+                paymentMethod:
+                    selectedPayment.value
+            };
+
+            localStorage.setItem(
+                "tokyoTrendsShipping",
+                JSON.stringify(shippingData)
+            );
+
+            const subtotal =
+                calculateSubtotal(cart);
+
+            const shippingFee =
+                subtotal >= 2000 ? 0 : 99;
+
+            const coupon =
+                localStorage.getItem(
+                    "tokyoTrendsCoupon"
+                );
+
+            const discount =
+                coupon === "TOKYO100" &&
+                subtotal >= 8000
+                    ? 1000
+                    : 0;
+
+            const total =
+                Math.max(
+                    0,
+                    subtotal +
+                    shippingFee -
+                    discount
+                );
+
+            const payload = {
+                cart: cart,
+                shipping: shippingData,
+                payment_method:
+                    selectedPayment.value,
+                coupon_code:
+                    coupon === "TOKYO100"
+                        ? "TOKYO100"
+                        : "",
+                subtotal: subtotal,
+                shipping_fee: shippingFee,
+                discount: discount,
+                total: total
+            };
+
+            try {
+                const response =
+                    await fetch(
+                        "/create-order/",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json",
+
+                                "X-CSRFToken":
+                                    csrfToken.value
+                            },
+
+                            body:
+                                JSON.stringify(
+                                    payload
+                                )
+                        }
+                    );
+
+                const data =
+                    await response.json();
+
+                if (
+                    !response.ok ||
+                    !data.success
+                ) {
+                    alert(
+                        data.message ||
+                        "We could not create your order."
+                    );
+
+                    return;
+                }
+
+                localStorage.setItem(
+                    "tokyoTrendsLastOrder",
+                    data.order_number
+                );
+
+                localStorage.removeItem(
+                    "tokyoTrendsCart"
+                );
+
+                localStorage.removeItem(
+                    "tokyoTrendsCoupon"
+                );
+
+                window.location.href =
+                    "/track-order/?order=" +
+                    encodeURIComponent(
+                        data.order_number
+                    ) +
+                    "&mobile=" +
+                    encodeURIComponent(
+                        shippingData.mobile
+                    );
+
+            } catch (error) {
+                alert(
+                    "Unable to connect to the server. Please try again."
+                );
+            }
+        }
+
+        renderOrderSummary();
+    </script>
+
+</body>
+</html>
